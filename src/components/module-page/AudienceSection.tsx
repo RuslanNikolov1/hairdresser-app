@@ -55,7 +55,10 @@ export function AudienceSection({
   const cards = getVisibleAudiences(audience);
 
   return (
-    <section id="audience" className={styles.section}>
+    <section
+      id="audience"
+      className={`${styles.section} ${styles.audienceSection}`}
+    >
       <div className={styles.container}>
         <div className={styles.centeredHeading}>
           <h2>За кого е този курс?</h2>

@@ -6,8 +6,11 @@ import {
 
 import styles from "./PortableTextRenderer.module.scss";
 
+export type PortableTextVariant = "default" | "theory" | "practice";
+
 type PortableTextRendererProps = {
   value?: PortableTextBlock[];
+  variant?: PortableTextVariant;
 };
 
 const components: PortableTextComponents = {
@@ -41,10 +44,20 @@ const components: PortableTextComponents = {
   },
 };
 
-export function PortableTextRenderer({ value }: PortableTextRendererProps) {
+export function PortableTextRenderer({
+  value,
+  variant = "default",
+}: PortableTextRendererProps) {
   if (!value?.length) {
     return null;
   }
 
-  return <PortableText value={value} components={components} />;
+  const variantClass =
+    variant === "default" ? styles.default : styles[variant];
+
+  return (
+    <div className={variantClass}>
+      <PortableText value={value} components={components} />
+    </div>
+  );
 }

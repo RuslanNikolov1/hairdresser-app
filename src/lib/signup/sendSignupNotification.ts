@@ -21,7 +21,7 @@ export async function sendSignupNotification({
 
   const fromRaw =
     process.env.MAILTRAP_FROM_EMAIL?.trim() ||
-    "Aura & Bloom <hello@aurabloom.bg>";
+    "DR & D <hello@aurabloom.bg>";
 
   const text = [
     "Нова заявка за записване",

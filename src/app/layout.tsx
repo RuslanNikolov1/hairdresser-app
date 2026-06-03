@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Aura & Bloom Hairdressing Academy",
+  title: "DR & D Hairdressing Academy",
   description: "CMS-powered module pages for professional hairdresser courses.",
 };
 

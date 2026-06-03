@@ -9,7 +9,7 @@ export default function HomePage() {
     <main className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.content}>
-          <p className={styles.eyebrow}>Aura & Bloom</p>
+          <p className={styles.eyebrow}>DR & D</p>
           <h1 className={styles.title}>Модулни страници за курсове</h1>
           <p className={styles.text}>
             Създавайте и управлявайте курсoви модулни страници през Sanity

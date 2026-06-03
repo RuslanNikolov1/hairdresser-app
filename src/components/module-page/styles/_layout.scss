@@ -1,0 +1,203 @@
+/* Hallmark · genre: editorial · macrostructure: Split Studio · theme: Salon · enrichment: photography · nav: N9 · footer: Ft5
+ * Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4
+ */
+
+.page {
+  --color-paper: oklch(97% 0.016 34);
+  --color-paper-2: oklch(93% 0.02 31);
+  --color-paper-3: oklch(88% 0.025 34);
+  --color-ink: oklch(19% 0.018 28);
+  --color-muted: oklch(42% 0.02 24);
+  --color-muted-soft: oklch(58% 0.018 24);
+  --color-rule: oklch(79% 0.028 42);
+  --color-accent: oklch(43% 0.055 20);
+  --color-accent-soft: oklch(85% 0.05 28);
+  --color-accent-ink: oklch(98% 0.012 34);
+  --color-error: oklch(43% 0.17 28);
+  --color-gold-soft: oklch(75% 0.06 78);
+  --color-panel-surface: oklch(99% 0.01 34 / 0.82);
+  --shadow-soft: 0 1.5rem 5rem oklch(27% 0.03 24 / 0.12);
+  --rule-hair: 1px;
+  --radius-panel: 1.5rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+
+  overflow-x: clip;
+  background:
+    linear-gradient(90deg, var(--color-paper) 0 50%, var(--color-paper-2) 50%),
+    var(--color-paper);
+  color: var(--color-ink);
+}
+
+.container {
+  width: min(100% - clamp(2rem, 8vw, 7rem), 76rem);
+  margin-inline: auto;
+}
+
+.nav {
+  position: fixed;
+  z-index: 20;
+  top: var(--space-md);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  width: min(100% - 2rem, 76rem);
+  padding: 0.75rem 0;
+  transform: translateX(-50%);
+  background: transparent;
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.brand {
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.navLinks {
+  display: none;
+}
+
+.navCta,
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    color var(--dur-short) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.navCta,
+.primaryButton {
+  border: var(--rule-hair) solid var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+.navCta {
+  min-height: 2.75rem;
+  padding: 0.8rem 1.2rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 3.25rem;
+  padding: 0.95rem 1.45rem;
+}
+
+.secondaryButton {
+  border: var(--rule-hair) solid var(--color-rule);
+  background: transparent;
+  color: var(--color-accent);
+
+  &:hover {
+    background: var(--color-paper-2);
+  }
+}
+
+.divider {
+  display: none;
+}
+
+.section {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+  background: transparent;
+
+  h2 {
+    margin: 0 0 var(--space-lg);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: clamp(2.35rem, 4.8vw, 4.2rem);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    overflow-wrap: anywhere;
+  }
+}
+
+.soft {
+  background: linear-gradient(180deg, transparent, var(--color-paper-2));
+}
+
+.centeredHeading,
+.studioHeading {
+  width: min(100%, 52rem);
+  margin: 0 0 clamp(2.5rem, 6vw, 4.5rem);
+  text-align: left;
+
+  p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 1.4vw, 1.18rem);
+    line-height: 1.65;
+  }
+}
+
+.centeredHeading {
+  margin-inline: 0 auto;
+}
+
+.lead {
+  margin: 0 0 var(--space-xl);
+  color: var(--color-muted);
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.audienceCard,
+.detailCard,
+.bookingCard {
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-panel);
+  background: var(--color-panel-surface);
+  box-shadow: none;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 0.85rem 1rem;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}

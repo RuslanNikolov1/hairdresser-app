@@ -22,7 +22,7 @@ export function resolveSignupContacts(
     facebook:
       settings?.facebookUrl?.trim() ||
       "https://www.facebook.com/aurabloom",
-    facebookLabel: settings?.facebookLabel?.trim() || "Aura & Bloom",
+    facebookLabel: settings?.facebookLabel?.trim() || "DR & D",
     instagram:
       settings?.instagramUrl?.trim() ||
       "https://www.instagram.com/aurabloom",

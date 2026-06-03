@@ -1,0 +1,343 @@
+.audienceSection {
+  padding-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+}
+
+.learningSection {
+  padding-top: clamp(2.25rem, 4.5vw, 3.5rem);
+}
+
+.audienceSingle,
+.audienceGrid {
+  width: min(100%, 56rem);
+  margin-inline: auto 0;
+}
+
+.audienceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: stretch;
+}
+
+.audienceCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-lg);
+  min-width: 0;
+  height: 100%;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+
+  h3 {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.2vw, 2rem);
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    line-height: 1.65;
+  }
+}
+
+.iconCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+}
+
+.iconCircle {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: 999px;
+  background: var(--color-paper-2);
+  flex-shrink: 0;
+
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+.learningStack {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  width: min(100%, 56rem);
+  margin-inline: auto;
+}
+
+.theoryPanel,
+.practicePanel {
+  min-width: 0;
+}
+
+.theoryPanel {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-panel);
+  background: var(--color-panel-surface);
+}
+
+.theoryPanelHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+    font-weight: 500;
+    line-height: 1.05;
+  }
+}
+
+.theoryIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: 999px;
+  background: var(--color-paper);
+  color: var(--color-accent);
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/* Hallmark · component: practice-panel · paired-with: theory-panel · theme: Salon
+ * deltas: left-accent · paper-2 fill · italic title · filled icon · accent markers
+ */
+
+.practicePanel {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-inline-end: 0.2rem solid var(--color-accent);
+  border-radius: var(--radius-panel);
+  background: var(--color-panel-surface);
+  text-align: right;
+}
+
+.practicePanelHead {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+
+  h3 {
+    margin: 0;
+    overflow-wrap: anywhere;
+    min-width: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.05;
+  }
+}
+
+.practiceIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: var(--rule-hair) solid var(--color-accent);
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.practicePanelBody {
+  min-width: 0;
+}
+
+.detailsGrid,
+.certificateGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.certificateGrid {
+  align-items: center;
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+}
+
+.certificateImage {
+  width: 94%;
+  margin-inline: auto 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-panel);
+  }
+}
+
+.studioHeading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: end;
+  width: 100%;
+
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    max-width: min(100%, 35rem);
+    margin: 0;
+    margin-inline: auto 0;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 1.4vw, 1.18rem);
+    line-height: 1.65;
+  }
+}
+
+.studioFrame {
+  width: min(100%, 64rem);
+  margin-inline: auto 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.studioImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-panel);
+  object-fit: cover;
+}
+
+.detailCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.detailCardLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-sm);
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.detailCardIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  color: var(--color-accent);
+
+  svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+}
+
+.detailCard {
+  padding: var(--space-lg);
+
+  strong {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: clamp(0.98rem, 1.2vw, 1.1rem);
+    font-weight: 500;
+  }
+}
+
+.bookingCard {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(1rem, 4vw, 3rem);
+  padding: clamp(2rem, 4vw, 3.2rem);
+  text-align: left;
+
+  &::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 0.35rem;
+    background: var(--color-accent);
+    content: "";
+  }
+
+  > * {
+    position: relative;
+  }
+
+  .bookingPrice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: var(--space-sm) var(--space-md);
+    margin: 0 0 var(--space-xl);
+    text-align: center;
+
+    span {
+      color: var(--color-muted);
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    strong {
+      color: var(--color-ink);
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.35rem);
+      font-weight: 500;
+      line-height: 1.05;
+    }
+  }
+
+  h3 {
+    margin: 0 0 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw, 2.7rem);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  p {
+    margin: 0 0 var(--space-xl);
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+}
+

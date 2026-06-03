@@ -38,7 +38,7 @@ export const siteSettings = defineType({
       name: "facebookLabel",
       title: "Facebook етикет",
       type: "string",
-      initialValue: "Aura & Bloom",
+      initialValue: "DR & D",
     }),
     defineField({
       name: "instagramUrl",

@@ -1,0 +1,120 @@
+.hero {
+  position: relative;
+  display: grid;
+  min-height: min(48rem, 100svh);
+  padding-block: clamp(7rem, 14vw, 11rem) clamp(4rem, 8vw, 7rem);
+  align-items: end;
+  overflow: clip;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: end;
+}
+
+.heroImage {
+  position: relative;
+  min-height: clamp(24rem, 45vw, 36rem);
+  overflow: hidden;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-panel);
+  background: var(--color-paper-2);
+  box-shadow: var(--shadow-soft);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &::after {
+    position: absolute;
+    inset: auto var(--space-lg) var(--space-lg) auto;
+    width: clamp(5rem, 12vw, 8rem);
+    height: clamp(5rem, 12vw, 8rem);
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: 999px;
+    background: color-mix(in oklch, var(--color-accent-soft) 70%, transparent);
+    content: "";
+  }
+}
+
+.heroContent {
+  position: relative;
+  display: grid;
+  width: min(100%, 44rem);
+  gap: var(--space-lg);
+  padding-bottom: clamp(0rem, 5vw, 3rem);
+
+  h1 {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 7vw, 6.25rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+    overflow-wrap: anywhere;
+
+    span {
+      color: var(--color-accent);
+      font-style: italic;
+    }
+  }
+
+  p {
+    width: min(100%, 36rem);
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.65;
+  }
+}
+
+.heroFormatBadge {
+  display: block;
+  width: fit-content;
+  padding: 0.45rem 0.85rem;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: 999px;
+  background: var(--color-paper-2);
+  color: var(--color-accent);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.courseIndex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-lg);
+  max-width: 34rem;
+  padding-top: var(--space-md);
+  border-top: var(--rule-hair) solid var(--color-rule);
+
+  a {
+    color: var(--color-muted);
+    font-size: 0.86rem;
+    line-height: 1.4;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.35em;
+    transition:
+      color var(--dur-short) var(--ease-out),
+      text-decoration-color var(--dur-short) var(--ease-out);
+
+    &:hover {
+      color: var(--color-accent);
+      text-decoration-color: var(--color-accent);
+    }
+  }
+}

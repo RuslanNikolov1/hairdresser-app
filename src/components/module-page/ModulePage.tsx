@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, CalendarCheck, Scissors } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  Calendar,
+  Clock,
+  MapPin,
+  Scissors,
+  Timer,
+} from "lucide-react";
 
 import { PortableTextRenderer } from "@/components/portable-text/PortableTextRenderer";
 
@@ -16,11 +24,6 @@ import type { ModulePageData } from "./types";
 type ModulePageProps = {
   module: ModulePageData;
   signupContacts: SignupContacts;
-};
-
-const formatLabels: Record<NonNullable<ModulePageData["format"]>, string> = {
-  group: "Групово",
-  individual: "Индивидуално",
 };
 
 const formatClassLabels: Record<NonNullable<ModulePageData["format"]>, string> =
@@ -57,7 +60,6 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
   const beforeAfterImages = module.beforeAfterImages || [];
   const showGallery =
     processImages.length > 0 || beforeAfterImages.length >= 2;
-  const formatLabel = module.format ? formatLabels[module.format] : "";
   const formatClassLabel = module.format
     ? formatClassLabels[module.format]
     : "";
@@ -71,10 +73,10 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
   ];
 
   return (
-    <>
+    <div className={styles.page}>
       <header className={styles.nav}>
-        <Link href="/" className={styles.brand} aria-label="Aura & Bloom home">
-          Aura & Bloom
+        <Link href="/" className={styles.brand} aria-label="DR & D home">
+          DR & D
         </Link>
         <nav className={styles.navLinks} aria-label="Primary navigation">
           {navItems.map((item) => (
@@ -90,30 +92,40 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
 
       <main>
         <section className={styles.hero}>
-          <div className={styles.heroImage}>
-            <SanityImage
-              image={module.backgroundImage}
-              fallbackAlt={module.title}
-              priority
-              sizes="100vw"
-            />
-          </div>
-          <div className={styles.heroOverlay} />
           <div className={styles.container}>
-            <div className={styles.heroContent}>
-              {formatClassLabel ? (
-                <span className={styles.heroFormatBadge}>{formatClassLabel}</span>
-              ) : null}
-              <h1>
-                Майсторски клас по <span>{module.title}</span>
-              </h1>
-              <div className={styles.heroActions}>
-                <a className={styles.primaryButton} href="#signup">
-                  Запиши се
-                </a>
-                <a className={styles.secondaryButton} href="#learning">
-                  Научи повече
-                </a>
+            <div className={styles.heroGrid}>
+              <div className={styles.heroContent}>
+                {formatClassLabel ? (
+                  <span className={styles.heroFormatBadge}>
+                    {formatClassLabel}
+                  </span>
+                ) : null}
+                <h1>
+                  Майсторски клас по <span>{module.title}</span>
+                </h1>
+                <div className={styles.heroActions}>
+                  <a className={styles.primaryButton} href="#signup">
+                    Запиши се
+                  </a>
+                  <a className={styles.secondaryButton} href="#learning">
+                    Научи повече
+                  </a>
+                </div>
+                <div className={styles.courseIndex} aria-label="Секции в курса">
+                  {navItems.map((item) => (
+                    <a key={item.href} href={item.href}>
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div className={styles.heroImage}>
+                <SanityImage
+                  image={module.backgroundImage}
+                  fallbackAlt={module.title}
+                  priority
+                  sizes="(min-width: 900px) 46vw, 92vw"
+                />
               </div>
             </div>
           </div>
@@ -125,29 +137,37 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
 
         <Divider soft />
 
-        <section id="learning" className={`${styles.section} ${styles.soft}`}>
+        <section
+          id="learning"
+          className={`${styles.section} ${styles.soft} ${styles.learningSection}`}
+        >
           <div className={styles.container}>
             <div className={styles.centeredHeading}>
               <h2>Какво ще научиш?</h2>
             </div>
-            <div className={styles.learningGrid}>
-              <article className={styles.learningCard}>
-                <div className={styles.cardTitle}>
-                  <span className={styles.iconSquare} aria-hidden="true">
+            <div className={styles.learningStack}>
+              <article className={styles.theoryPanel}>
+                <header className={styles.theoryPanelHead}>
+                  <span className={styles.theoryIcon} aria-hidden="true">
                     <BookOpen strokeWidth={1.75} />
                   </span>
                   <h3>Теория</h3>
-                </div>
-                <PortableTextRenderer value={module.theory} />
+                </header>
+                <PortableTextRenderer value={module.theory} variant="theory" />
               </article>
-              <article className={styles.learningCard}>
-                <div className={styles.cardTitle}>
-                  <span className={styles.iconSquare} aria-hidden="true">
+              <article className={styles.practicePanel}>
+                <header className={styles.practicePanelHead}>
+                  <span className={styles.practiceIcon} aria-hidden="true">
                     <Scissors strokeWidth={1.75} />
                   </span>
                   <h3>Практика</h3>
+                </header>
+                <div className={styles.practicePanelBody}>
+                  <PortableTextRenderer
+                    value={module.practice}
+                    variant="practice"
+                  />
                 </div>
-                <PortableTextRenderer value={module.practice} />
               </article>
             </div>
           </div>
@@ -189,7 +209,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
             <div className={styles.studioFrame}>
               <Image
                 src="/studio.jpg"
-                alt="Интериор на студиото Aura & Bloom"
+                alt="Интериор на студиото DR & D"
                 width={1200}
                 height={675}
                 className={styles.studioImage}
@@ -208,24 +228,33 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                 практика и увереност в салонна среда.
               </p>
               <div className={styles.detailCards}>
-                <DetailCard label="Старт" value={formatDate(module.startAt)} />
+                <DetailCard
+                  label="Старт"
+                  value={formatDate(module.startAt)}
+                  icon={Calendar}
+                />
                 <DetailCard
                   label="Час"
                   value={formatTime(module.startAt) || "По график"}
+                  icon={Clock}
                 />
                 <DetailCard
                   label="Продължителност"
                   value={`${module.durationMinutes || 0} минути`}
+                  icon={Timer}
                 />
-                <DetailCard label="Място" value={module.location || ""} />
-                <DetailCard label="Формат" value={formatLabel} />
-                <DetailCard label="Цена" value={`${module.price || 0} евро`} />
+                <DetailCard
+                  label="Място"
+                  value={module.location || ""}
+                  icon={MapPin}
+                />
               </div>
             </div>
             <aside className={styles.bookingCard}>
-              <span className={styles.bookingIcon} aria-hidden="true">
-                <CalendarCheck strokeWidth={1.75} />
-              </span>
+              <p className={styles.bookingPrice}>
+                <span>Цена</span>
+                <strong>{`${module.price || 0} евро`}</strong>
+              </p>
               <h3>Ограничени места</h3>
               <p>
                 Групите са малки, за да има персонално внимание към всеки
@@ -243,7 +272,6 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
             <div className={styles.container}>
               <div className={styles.centeredHeading}>
                 <h2>Галерия</h2>
-                <span className={styles.galleryRule} aria-hidden="true" />
               </div>
 
               {processImages.length > 0 && (
@@ -260,7 +288,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                             fill
                             image={image}
                             fallbackAlt={`Процес ${module.title}`}
-                            sizes="(min-width: 900px) 40vw, 90vw"
+                            sizes="(min-width: 900px) 28vw, (min-width: 520px) 45vw, 90vw"
                           />
                         </div>
                       </div>
@@ -315,11 +343,11 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
 
       <footer className={styles.footer}>
         <div className={styles.container}>
-          <p className={styles.brand}>Aura & Bloom</p>
-          <p>© 2026 Aura & Bloom Hairdressing Academy.</p>
+          <p className={styles.brand}>DR & D</p>
+          <p>© 2026 DR & D Hairdressing Academy.</p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 
@@ -331,10 +359,23 @@ function Divider({ soft = false }: { soft?: boolean }) {
   );
 }
 
-function DetailCard({ label, value }: { label: string; value: string }) {
+function DetailCard({
+  label,
+  value,
+  icon: Icon,
+}: {
+  label: string;
+  value: string;
+  icon: LucideIcon;
+}) {
   return (
     <article className={styles.detailCard}>
-      <p>{label}</p>
+      <p className={styles.detailCardLabel}>
+        <span className={styles.detailCardIcon} aria-hidden="true">
+          <Icon strokeWidth={1.75} />
+        </span>
+        {label}
+      </p>
       <strong>{value}</strong>
     </article>
   );

@@ -1,38 +1,92 @@
-.paragraph {
-  margin: 0 0 1rem;
-  color: var(--color-on-surface-muted);
-  font-size: clamp(1rem, 1.1vw, 1.125rem);
-  line-height: 1.65;
-}
+.default,
+.theory,
+.practice {
+  .paragraph {
+    margin: 0 0 1rem;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 1.1vw, 1.125rem);
+    line-height: 1.65;
 
-.list {
-  display: grid;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
-.item {
-  position: relative;
-  padding-left: 2rem;
-  color: var(--color-on-surface-muted);
-  font-size: clamp(1rem, 1.1vw, 1.125rem);
-  line-height: 1.55;
+  .list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-  &::before {
-    position: absolute;
-    top: 0.1rem;
-    left: 0;
-    color: var(--color-gold);
-    content: "✓";
+  .link {
+    color: var(--color-accent);
     font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 }
 
-.link {
-  color: var(--color-primary);
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+.theory .list {
+  display: grid;
+  gap: 0;
+  border-block: var(--rule-hair) solid var(--color-rule);
+}
+
+.theory .item {
+  position: relative;
+  padding: 1rem 0 1rem 1.75rem;
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+  color: var(--color-ink);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.55;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &::before {
+    position: absolute;
+    top: 1.05rem;
+    left: 0;
+    width: 0.55rem;
+    height: 0.55rem;
+    border: var(--rule-hair) solid var(--color-gold-soft);
+    border-radius: 1px;
+    background: var(--color-paper-2);
+    content: "";
+  }
+}
+
+.practice .list {
+  display: grid;
+  gap: 0;
+  border-block: var(--rule-hair) solid var(--color-rule);
+}
+
+.practice .item {
+  position: relative;
+  min-width: 0;
+  padding: 1.1rem 2rem 1.1rem 0;
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+  color: var(--color-ink);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.55;
+  text-align: right;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &::before {
+    position: absolute;
+    top: 1.15rem;
+    right: 0;
+    left: auto;
+    width: 0.45rem;
+    height: 0.45rem;
+    border: none;
+    border-radius: 999px;
+    background: var(--color-accent);
+    content: "";
+  }
 }

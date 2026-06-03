@@ -15,21 +15,25 @@ export function ExpertSection() {
       <div className={styles.container}>
         <article className={styles.card}>
           <div className={styles.media}>
-            <Image
-              src="/mentor.png"
-              alt={EXPERT.name}
-              width={640}
-              height={800}
-              className={styles.portrait}
-              sizes="(min-width: 900px) 38vw, 90vw"
-            />
+            <div className={styles.mediaFrame}>
+              <Image
+                src="/mentor.png"
+                alt={EXPERT.name}
+                width={640}
+                height={800}
+                className={styles.portrait}
+                sizes="(min-width: 900px) 38vw, 90vw"
+              />
+            </div>
           </div>
 
           <div className={styles.content}>
-            <p className={styles.eyebrow}>Вашият ментор</p>
-            <h2 id="mentor-heading" className={styles.name}>
-              {EXPERT.name}
-            </h2>
+            <div className={styles.headingLockup}>
+              <p className={styles.eyebrow}>Вашият ментор</p>
+              <h2 id="mentor-heading" className={styles.name}>
+                {EXPERT.name}
+              </h2>
+            </div>
             <p className={styles.bio}>{EXPERT.bio}</p>
             <blockquote className={styles.quote}>
               <span className={styles.quoteIcon} aria-hidden="true">
