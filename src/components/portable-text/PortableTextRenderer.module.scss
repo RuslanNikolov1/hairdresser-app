@@ -1,0 +1,38 @@
+.paragraph {
+  margin: 0 0 1rem;
+  color: var(--color-on-surface-muted);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.65;
+}
+
+.list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  padding-left: 2rem;
+  color: var(--color-on-surface-muted);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.55;
+
+  &::before {
+    position: absolute;
+    top: 0.1rem;
+    left: 0;
+    color: var(--color-gold);
+    content: "✓";
+    font-weight: 700;
+  }
+}
+
+.link {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

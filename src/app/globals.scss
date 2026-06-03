@@ -1,0 +1,67 @@
+:root {
+  --color-on-primary: #ffffff;
+  --color-primary: #71585b;
+  --color-primary-soft: #f8d7da;
+  --color-surface: #fff8f6;
+  --color-surface-low: #fbf2ef;
+  --color-surface-card: #ffffff;
+  --color-surface-container: #f6ece9;
+  --color-on-surface: #1f1b19;
+  --color-on-surface-muted: #4f4445;
+  --color-outline: #d2c3c4;
+  --color-gold: #c1a57b;
+  --shadow-luxury: 0 10px 40px -10px rgba(113, 88, 91, 0.14);
+  --font-body: var(--font-plus-jakarta), sans-serif;
+  --font-display: var(--font-playfair), serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--color-surface);
+  font-family: var(--font-body);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  &:focus-visible {
+    outline: 3px solid rgba(193, 165, 123, 0.8);
+    outline-offset: 4px;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.material-symbols-outlined {
+  direction: ltr;
+  display: inline-block;
+  font-family: "Material Symbols Outlined";
+  font-feature-settings: "liga";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  -webkit-font-smoothing: antialiased;
+}

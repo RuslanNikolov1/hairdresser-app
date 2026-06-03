@@ -1,0 +1,75 @@
+.page {
+  min-height: 100vh;
+  padding: 8vh 6vw;
+  background:
+    radial-gradient(circle at top right, rgba(248, 215, 218, 0.7), transparent 36vw),
+    var(--color-surface);
+}
+
+.hero {
+  display: grid;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.content {
+  width: min(100%, 54rem);
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-on-surface);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.text {
+  width: min(100%, 40rem);
+  margin: 1.5rem 0 0;
+  color: var(--color-on-surface-muted);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.button,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.4rem;
+  padding: 1rem 1.8rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.button {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.secondaryButton {
+  border: 1px solid rgba(193, 165, 123, 0.36);
+  color: var(--color-primary);
+}

@@ -1,0 +1,113 @@
+.section {
+  padding-block: clamp(4rem, 8vw, 6rem);
+  background: var(--color-surface);
+}
+
+.container {
+  width: min(100% - 8vw, 75rem);
+  margin-inline: auto;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+  padding: clamp(2rem, 4vw, 3rem);
+  border: 1px solid rgba(193, 165, 123, 0.2);
+  border-radius: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(248, 215, 218, 0.35) 0%,
+    rgba(255, 248, 246, 0.95) 55%,
+    var(--color-surface-card) 100%
+  );
+  box-shadow: var(--shadow-luxury);
+}
+
+.media {
+  position: relative;
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 22rem;
+  border-radius: 1.75rem;
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 1.25rem 3rem rgba(113, 88, 91, 0.14);
+}
+
+.content {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  text-align: left;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-on-surface-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.name {
+  margin: 0;
+  color: var(--color-on-surface);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.bio {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--color-on-surface);
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.7;
+}
+
+.quote {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin: 0;
+  max-width: 36rem;
+
+  p {
+    margin: 0;
+    color: var(--color-on-surface);
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    font-style: italic;
+    line-height: 1.7;
+  }
+}
+
+.quoteIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--color-on-surface-muted);
+
+  svg {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+}
+
+@media (width <= 860px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 520px) {
+  .container {
+    width: min(100% - 2rem, 75rem);
+  }
+}

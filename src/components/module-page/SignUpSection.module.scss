@@ -1,0 +1,227 @@
+.section {
+  padding-block: clamp(4rem, 8vw, 6rem);
+  background: rgba(251, 242, 239, 0.66);
+  scroll-margin-top: 5rem;
+}
+
+.container {
+  width: min(100% - 8vw, 75rem);
+  margin-inline: auto;
+}
+
+.heading {
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  color: var(--color-on-surface);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.lead {
+  width: min(100%, 40rem);
+  margin: -1.5rem auto clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--color-on-surface-muted);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.65;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: stretch;
+}
+
+.formCard,
+.contactsCard {
+  border: 1px solid rgba(193, 165, 123, 0.2);
+  border-radius: 2rem;
+  background: var(--color-surface-card);
+  box-shadow: var(--shadow-luxury);
+}
+
+.formCard {
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  label {
+    color: var(--color-on-surface-muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  input {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid rgba(193, 165, 123, 0.32);
+    border-radius: 1rem;
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+    font: inherit;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+
+    &::placeholder {
+      color: rgba(79, 68, 69, 0.45);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(113, 88, 91, 0.14);
+      outline: none;
+    }
+  }
+}
+
+.formError {
+  margin: 0;
+  color: #ba1a1a;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.formSuccess {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.4rem;
+  margin-top: 0.5rem;
+  padding: 1rem 1.8rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 1rem 2.5rem rgba(113, 88, 91, 0.22);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+
+  &:hover {
+    transform: translateY(-0.08rem);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.72;
+    transform: none;
+  }
+}
+
+.contactsCard {
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+.contactsTitle {
+  margin: 0 0 1.75rem;
+  color: var(--color-on-surface);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 400;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contactIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(210, 195, 196, 0.5);
+  border-radius: 999px;
+  background: var(--color-surface-container);
+  color: var(--color-primary);
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.contactBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-top: 0.15rem;
+
+  span {
+    color: var(--color-on-surface-muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  a {
+    color: var(--color-on-surface);
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    line-height: 1.4;
+    transition: color 180ms ease;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
+
+@media (width <= 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 520px) {
+  .container {
+    width: min(100% - 2rem, 75rem);
+  }
+}
