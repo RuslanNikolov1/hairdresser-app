@@ -2,7 +2,8 @@ import type { HomePageModule } from "@/components/home-page/HomePage";
 import { instructor } from "@/components/home-page/content";
 import type { SignupContacts } from "@/lib/signup/contacts";
 
-import { STUDIO_ADDRESS, STUDIO_ADDRESS_MAPS_URL } from "./address";
+import { getAudienceLabel } from "./audience";
+import { STUDIO_ADDRESS, STUDIO_ADDRESS_MAPS_URL, STUDIO_CITY } from "./address";
 import { HOME_DESCRIPTION, SITE_NAME, SITE_SHORT_NAME } from "./metadata";
 import { absoluteUrl } from "./url";
 
@@ -23,7 +24,7 @@ export function buildHomeJsonLd({ modules, contacts }: HomeJsonLdInput) {
       "@type": "Course" as const,
       "@id": absoluteUrl(`/modules/${module.slug}`),
       name: module.title,
-      description: module.targetAudience,
+      description: getAudienceLabel(module.targetAudience),
       url: absoluteUrl(`/modules/${module.slug}`),
       provider: { "@id": organizationId },
       ...(typeof module.price === "number"
@@ -71,14 +72,14 @@ export function buildHomeJsonLd({ modules, contacts }: HomeJsonLdInput) {
         address: {
           "@type": "PostalAddress",
           streetAddress: STUDIO_ADDRESS,
-          addressLocality: "София",
+          addressLocality: STUDIO_CITY,
           addressCountry: "BG",
         },
         hasMap: STUDIO_ADDRESS_MAPS_URL,
         sameAs,
         areaServed: {
           "@type": "City",
-          name: "София",
+          name: STUDIO_CITY,
         },
         ...(courses.length > 0
           ? { hasOfferCatalog: { "@type": "OfferCatalog", itemListElement: courses } }

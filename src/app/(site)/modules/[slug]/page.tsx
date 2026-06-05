@@ -4,10 +4,12 @@ import { notFound } from "next/navigation";
 
 import { ModulePage } from "@/components/module-page/ModulePage";
 import type { ModulePageData } from "@/components/module-page/types";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { resolveSignupContacts } from "@/lib/signup/contacts";
 import type { SiteSettingsContacts } from "@/lib/signup/types";
+import { buildModuleJsonLd } from "@/lib/site/module-json-ld";
+import { buildModuleMetadata } from "@/lib/site/module-seo";
 import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
 import { MODULE_BY_SLUG_QUERY, SITE_SETTINGS_QUERY } from "@/sanity/lib/queries";
 
 export const dynamic = "force-dynamic";
@@ -46,29 +48,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const metadata: Metadata = {
-    title: courseModule.seo?.title || courseModule.title,
-    description: courseModule.seo?.description,
-  };
-
-  if (courseModule.seo?.image) {
-    metadata.openGraph = {
-      images: [
-        {
-          url: urlFor(courseModule.seo.image).width(1200).height(630).url(),
-          width: 1200,
-          height: 630,
-          alt: courseModule.seo.image.alt || courseModule.title,
-        },
-      ],
-    };
-  }
-
-  if (courseModule.seo?.noIndex) {
-    metadata.robots = "noindex";
-  }
-
-  return metadata;
+  return buildModuleMetadata(courseModule, slug);
 }
 
 export default async function ModuleRoute({ params }: RouteProps) {
@@ -86,9 +66,12 @@ export default async function ModuleRoute({ params }: RouteProps) {
   );
 
   return (
-    <ModulePage
-      module={courseModule}
-      signupContacts={resolveSignupContacts(siteSettings)}
-    />
+    <>
+      <JsonLd data={buildModuleJsonLd(courseModule, slug)} />
+      <ModulePage
+        module={courseModule}
+        signupContacts={resolveSignupContacts(siteSettings)}
+      />
+    </>
   );
 }

@@ -4,7 +4,10 @@ import { client } from "@/sanity/lib/client";
 import { MODULE_SLUGS_QUERY } from "@/sanity/lib/queries";
 import { getSiteUrl } from "@/lib/site/url";
 
-type ModuleSlug = { slug?: string };
+type ModuleSlug = {
+  slug?: string;
+  _updatedAt?: string;
+};
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getSiteUrl().origin;
@@ -22,9 +25,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const moduleEntries: MetadataRoute.Sitemap = moduleSlugs
-    .filter((entry): entry is { slug: string } => Boolean(entry.slug))
+    .filter((entry): entry is { slug: string; _updatedAt?: string } =>
+      Boolean(entry.slug),
+    )
     .map((entry) => ({
       url: `${baseUrl}/modules/${entry.slug}`,
+      lastModified: entry._updatedAt ? new Date(entry._updatedAt) : undefined,
       changeFrequency: "weekly",
       priority: 0.8,
     }));

@@ -20,13 +20,18 @@ import type { SanityImageValue } from "@/components/module-page/types";
 import type { SignupContacts } from "@/lib/signup/contacts";
 import {
   STUDIO_ADDRESS,
+  STUDIO_ADDRESS_FULL,
   STUDIO_ADDRESS_MAPS_URL,
 } from "@/lib/site/address";
+import { getAudienceLabel } from "@/lib/site/audience";
+import { HOME_HERO_LEAD, HOME_TITLE } from "@/lib/site/metadata";
 
 import {
   galleryBeforeAfter,
   galleryProcess,
   galleryStudio,
+  homeContactIntro,
+  homeModulesIntro,
   instructor,
   learningFormats,
   learningHighlights,
@@ -52,12 +57,6 @@ type HomePageProps = {
 
 type IconComponent = ElementType<{ strokeWidth?: number; "aria-hidden"?: boolean }>;
 
-const audienceLabels: Record<string, string> = {
-  beginners: "За начинаещи",
-  advanced: "За напреднали",
-  both: "За начинаещи и напреднали",
-};
-
 const highlightIcons: IconComponent[] = [BookOpen, Scissors, Award];
 
 function formatDate(value?: string) {
@@ -78,14 +77,6 @@ function formatPrice(value?: number) {
   }
 
   return `${value} евро`;
-}
-
-function getAudienceLabel(value?: string) {
-  if (!value) {
-    return "За всички нива";
-  }
-
-  return audienceLabels[value] || value;
 }
 
 const navItems = [
@@ -128,12 +119,8 @@ export function HomePage({ modules, contacts }: HomePageProps) {
             </div>
           </div>
           <div className={styles.heroCopy}>
-            <h1 id="home-hero-title">
-              Модули за фризьори, които се учат с ръце.
-            </h1>
-            <p>
-              Всеки модул събира ясна теория, демонстрация и работа в студио.
-            </p>
+            <h1 id="home-hero-title">{HOME_TITLE}</h1>
+            <p>{HOME_HERO_LEAD}</p>
             <div className={styles.heroLinks}>
               <a href="#modules">Виж модулите</a>
               <a href="#contacts">Свържи се</a>
@@ -148,7 +135,9 @@ export function HomePage({ modules, contacts }: HomePageProps) {
         >
           <div className={styles.sectionHeader}>
             <p className={styles.sectionLabel}>Формати</p>
-            <h2 id="learning-title">Обучение според нивото и ритъма ти</h2>
+            <h2 id="learning-title">
+              Обучение за фризьори според нивото и ритъма ти
+            </h2>
           </div>
           <div className={styles.modeGrid}>
             {learningFormats.map((mode) => (
@@ -207,7 +196,8 @@ export function HomePage({ modules, contacts }: HomePageProps) {
         >
           <div className={styles.sectionHeader}>
             <p className={styles.sectionLabel}>Каталог</p>
-            <h2 id="modules-title">Активни модули</h2>
+            <h2 id="modules-title">Курсове и модули за фризьори</h2>
+            <p>{homeModulesIntro}</p>
           </div>
 
           {modules.length > 0 ? (
@@ -341,11 +331,8 @@ export function HomePage({ modules, contacts }: HomePageProps) {
         <section id="contacts" className={styles.contactSection} aria-labelledby="contacts-title">
           <div className={styles.contactCopy}>
             <p className={styles.sectionLabel}>Контакти</p>
-            <h2 id="contacts-title">Попитай за подходящ модул</h2>
-            <p>
-              Ако не си сигурен откъде да започнеш, свържи се с нас. Ще ти
-              помогнем да избереш формат, ниво и следваща дата.
-            </p>
+            <h2 id="contacts-title">Попитай за подходящ курс</h2>
+            <p>{homeContactIntro}</p>
           </div>
           <address className={styles.contactCard}>
             <ContactLink
@@ -387,7 +374,7 @@ export function HomePage({ modules, contacts }: HomePageProps) {
 
       <footer className={styles.footer}>
         <p className={styles.footerBrand}>DR & D</p>
-        <p>Модулно обучение за фризьори · {STUDIO_ADDRESS} · 2026</p>
+        <p>Модулно обучение за фризьори · {STUDIO_ADDRESS_FULL} · 2026</p>
       </footer>
     </div>
   );

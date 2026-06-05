@@ -14,7 +14,8 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
 
 export const MODULE_SLUGS_QUERY = defineQuery(`
   *[_type == "module" && coalesce(status, "live") == "live" && defined(slug.current)] {
-    "slug": slug.current
+    "slug": slug.current,
+    "_updatedAt": _updatedAt
   }
 `);
 

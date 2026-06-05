@@ -1,8 +1,9 @@
 import { ImageResponse } from "next/og";
 
+import { STUDIO_CITY } from "@/lib/site/address";
 import { HOME_TITLE, SITE_SHORT_NAME } from "@/lib/site/metadata";
 
-export const alt = "DR & D — модули за фризьори";
+export const alt = `DR & D — обучение за фризьори в ${STUDIO_CITY}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -38,7 +39,7 @@ export default function OpenGraphImage() {
             {HOME_TITLE}
           </div>
           <div style={{ display: "flex", fontSize: 28, lineHeight: 1.4, opacity: 0.88 }}>
-            Теория, демонстрация и практика в студио
+            DR & D Academy · {STUDIO_CITY}
           </div>
         </div>
       </div>

@@ -13,7 +13,8 @@ import {
 import { PortableTextRenderer } from "@/components/portable-text/PortableTextRenderer";
 
 import type { SignupContacts } from "@/lib/signup/contacts";
-import { STUDIO_ADDRESS } from "@/lib/site/address";
+import { STUDIO_ADDRESS, STUDIO_ADDRESS_FULL, STUDIO_CITY } from "@/lib/site/address";
+import { buildModuleHeroLead } from "@/lib/site/module-seo";
 
 import { AudienceSection } from "./AudienceSection";
 import { ExpertSection } from "./ExpertSection";
@@ -78,10 +79,10 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
     <div className={styles.page}>
       <header className={styles.nav}>
         <div className={styles.navInner}>
-          <Link href="/" className={styles.brand} aria-label="DR & D home">
+          <Link href="/" className={styles.brand} aria-label="DR & D начало">
             DR & D
           </Link>
-          <nav className={styles.navLinks} aria-label="Primary navigation">
+          <nav className={styles.navLinks} aria-label="Основна навигация">
             {navItems.map((item) => (
               <a key={item.href} href={item.href}>
                 {item.label}
@@ -105,8 +106,9 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                   </span>
                 ) : null}
                 <h1>
-                  Майсторски клас по <span>{module.title}</span>
+                  Курс по <span>{module.title}</span> в {STUDIO_CITY}
                 </h1>
+                <p className={styles.heroLead}>{buildModuleHeroLead(module)}</p>
                 <div className={styles.heroImage}>
                   <SanityImage
                     image={module.backgroundImage}
@@ -204,10 +206,10 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
             <div className={styles.studioHeading}>
               <SectionHeading>Пространство за Творчество</SectionHeading>
               <p>
-                Нашето студио е проектирано да вдъхновява. Оборудвано с най-новата
-                професионална техника и разположено в светла, минималистична
-                обстановка, то предлага идеалните условия за вашето развитие като
-                топ колорист.
+                Студиото на DR & D на {STUDIO_ADDRESS_FULL} е проектирано да
+                вдъхновява. Оборудвано с професионална техника и светла
+                обстановка, то предлага идеални условия за практическо обучение
+                на фризьори.
               </p>
             </div>
             <div className={styles.studioFrame}>
@@ -249,7 +251,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                 />
                 <DetailCard
                   label="Място"
-                  value={STUDIO_ADDRESS}
+                  value={STUDIO_ADDRESS_FULL}
                   icon={MapPin}
                 />
               </div>
@@ -356,7 +358,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
       <footer className={styles.footer}>
         <div className={styles.container}>
           <p className={styles.brand}>DR & D</p>
-          <p>© 2026 DR & D Hairdressing Academy.</p>
+          <p>Модулно обучение за фризьори · {STUDIO_ADDRESS_FULL} · © 2026</p>
         </div>
       </footer>
     </div>
