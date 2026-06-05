@@ -1,0 +1,40 @@
+import type { MetadataRoute } from "next";
+
+import { client } from "@/sanity/lib/client";
+import { MODULE_SLUGS_QUERY } from "@/sanity/lib/queries";
+import { getSiteUrl } from "@/lib/site/url";
+
+type ModuleSlug = { slug?: string };
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = getSiteUrl().origin;
+
+  let moduleSlugs: ModuleSlug[] = [];
+
+  try {
+    moduleSlugs = await client.fetch<ModuleSlug[]>(
+      MODULE_SLUGS_QUERY,
+      {},
+      { perspective: "published", useCdn: true, stega: false },
+    );
+  } catch {
+    moduleSlugs = [];
+  }
+
+  const moduleEntries: MetadataRoute.Sitemap = moduleSlugs
+    .filter((entry): entry is { slug: string } => Boolean(entry.slug))
+    .map((entry) => ({
+      url: `${baseUrl}/modules/${entry.slug}`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
+
+  return [
+    {
+      url: baseUrl,
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    ...moduleEntries,
+  ];
+}

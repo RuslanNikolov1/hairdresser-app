@@ -29,16 +29,26 @@
     grid-template-columns: 1fr;
   }
 
+  .heroGrid {
+    grid-template-areas:
+      "badge"
+      "title"
+      "image"
+      "actions";
+    gap: var(--space-lg);
+  }
+
   .studioHeading p {
     align-self: start;
   }
 
-  .heroContent {
+  .heroActions {
     padding-bottom: 0;
   }
 
   .heroImage {
     aspect-ratio: 4 / 5;
+    align-self: stretch;
     transform: translateY(clamp(0.5rem, 2vw, 1.25rem));
   }
 
@@ -118,13 +128,6 @@
   .beforeBadge,
   .afterBadge {
     top: var(--space-sm);
-  }
-
-  .beforeBadge {
-    left: var(--space-sm);
-  }
-
-  .afterBadge {
     right: var(--space-sm);
   }
 }

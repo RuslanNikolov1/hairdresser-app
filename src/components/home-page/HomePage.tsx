@@ -6,6 +6,7 @@ import {
   Calendar,
   GraduationCap,
   Mail,
+  MapPin,
   Phone,
   Scissors,
   Sparkles,
@@ -17,6 +18,10 @@ import { FacebookIcon, InstagramIcon } from "@/components/module-page/SocialIcon
 import { SanityImage } from "@/components/module-page/SanityImage";
 import type { SanityImageValue } from "@/components/module-page/types";
 import type { SignupContacts } from "@/lib/signup/contacts";
+import {
+  STUDIO_ADDRESS,
+  STUDIO_ADDRESS_MAPS_URL,
+} from "@/lib/site/address";
 
 import {
   galleryBeforeAfter,
@@ -356,6 +361,13 @@ export function HomePage({ modules, contacts }: HomePageProps) {
               value={contacts.email}
             />
             <ContactLink
+              icon={MapPin}
+              label="Адрес"
+              href={STUDIO_ADDRESS_MAPS_URL}
+              value={STUDIO_ADDRESS}
+              external
+            />
+            <ContactLink
               icon={FacebookIcon}
               label="Facebook"
               href={contacts.facebook}
@@ -375,7 +387,7 @@ export function HomePage({ modules, contacts }: HomePageProps) {
 
       <footer className={styles.footer}>
         <p className={styles.footerBrand}>DR & D</p>
-        <p>Модулно обучение за фризьори · Патриарх Евтимий 44 · 2026</p>
+        <p>Модулно обучение за фризьори · {STUDIO_ADDRESS} · 2026</p>
       </footer>
     </div>
   );

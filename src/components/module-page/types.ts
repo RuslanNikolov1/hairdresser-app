@@ -24,7 +24,6 @@ export type ModulePageData = {
   targetAudience?: "beginners" | "advanced" | "both" | string;
   theory?: PortableTextBlock[];
   practice?: PortableTextBlock[];
-  location?: string;
   startAt?: string;
   durationMinutes?: number;
   format?: "group" | "individual";

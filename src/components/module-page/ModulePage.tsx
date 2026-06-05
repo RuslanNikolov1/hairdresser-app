@@ -13,6 +13,7 @@ import {
 import { PortableTextRenderer } from "@/components/portable-text/PortableTextRenderer";
 
 import type { SignupContacts } from "@/lib/signup/contacts";
+import { STUDIO_ADDRESS } from "@/lib/site/address";
 
 import { AudienceSection } from "./AudienceSection";
 import { ExpertSection } from "./ExpertSection";
@@ -106,6 +107,16 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                 <h1>
                   Майсторски клас по <span>{module.title}</span>
                 </h1>
+                <div className={styles.heroImage}>
+                  <SanityImage
+                    image={module.backgroundImage}
+                    fallbackAlt={module.title}
+                    fill
+                    priority
+                    className={styles.heroImageMedia}
+                    sizes="(min-width: 900px) 46vw, 92vw"
+                  />
+                </div>
                 <div className={styles.heroActions}>
                   <a className={styles.primaryButton} href="#signup">
                     Запиши се
@@ -114,16 +125,6 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                     Научи повече
                   </a>
                 </div>
-              </div>
-              <div className={styles.heroImage}>
-                <SanityImage
-                  image={module.backgroundImage}
-                  fallbackAlt={module.title}
-                  fill
-                  priority
-                  className={styles.heroImageMedia}
-                  sizes="(min-width: 900px) 46vw, 92vw"
-                />
               </div>
             </div>
           </div>
@@ -248,7 +249,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                 />
                 <DetailCard
                   label="Място"
-                  value={module.location || ""}
+                  value={STUDIO_ADDRESS}
                   icon={MapPin}
                 />
               </div>

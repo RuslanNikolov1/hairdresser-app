@@ -51,7 +51,6 @@ export const MODULE_BY_SLUG_QUERY = defineQuery(`
     targetAudience,
     theory,
     practice,
-    location,
     startAt,
     durationMinutes,
     format,

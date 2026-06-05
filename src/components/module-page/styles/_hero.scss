@@ -14,18 +14,24 @@
 .heroGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+  grid-template-areas:
+    "badge image"
+    "title image"
+    "actions image";
   gap: clamp(2rem, 7vw, 6rem);
   align-items: end;
 }
 
 .heroImage {
   position: relative;
+  grid-area: image;
   width: 100%;
   aspect-ratio: 5 / 6;
   overflow: hidden;
   border-radius: var(--radius-panel);
   background: var(--color-paper-2);
   box-shadow: var(--shadow-soft);
+  align-self: end;
 }
 
 .heroImageMedia {
@@ -36,13 +42,11 @@
 }
 
 .heroContent {
-  position: relative;
-  display: grid;
-  width: min(100%, 44rem);
-  gap: var(--space-lg);
-  padding-bottom: clamp(0rem, 5vw, 3rem);
+  display: contents;
 
   h1 {
+    grid-area: title;
+    width: min(100%, 44rem);
     margin: 0;
     color: var(--color-ink);
     font-family: var(--font-display);
@@ -68,6 +72,7 @@
 }
 
 .heroFormatBadge {
+  grid-area: badge;
   display: block;
   width: fit-content;
   padding: 0.45rem 0.85rem;
@@ -82,8 +87,11 @@
 }
 
 .heroActions {
+  grid-area: actions;
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-md);
+  width: min(100%, 44rem);
   margin-top: clamp(0.75rem, 2.5vw, 1.5rem);
+  padding-bottom: clamp(0rem, 5vw, 3rem);
 }
