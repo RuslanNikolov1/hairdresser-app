@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { BadgeCheck } from "lucide-react";
 
+import { SectionHeading } from "./SectionHeading";
 import styles from "./ExpertSection.module.scss";
 
 const EXPERT = {
@@ -30,15 +30,16 @@ export function ExpertSection() {
           <div className={styles.content}>
             <div className={styles.headingLockup}>
               <p className={styles.eyebrow}>Вашият ментор</p>
-              <h2 id="mentor-heading" className={styles.name}>
+              <SectionHeading
+                id="mentor-heading"
+                titleClassName={styles.name}
+                showWave={false}
+              >
                 {EXPERT.name}
-              </h2>
+              </SectionHeading>
             </div>
             <p className={styles.bio}>{EXPERT.bio}</p>
             <blockquote className={styles.quote}>
-              <span className={styles.quoteIcon} aria-hidden="true">
-                <BadgeCheck strokeWidth={1.5} />
-              </span>
               <p>&ldquo;{EXPERT.quote}&rdquo;</p>
             </blockquote>
           </div>

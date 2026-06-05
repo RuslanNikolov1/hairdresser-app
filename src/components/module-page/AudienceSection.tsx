@@ -5,6 +5,7 @@ import {
   normalizeTargetAudience,
   type TargetAudienceValue,
 } from "./audience-content";
+import { SectionHeading } from "./SectionHeading";
 import styles from "./ModulePage.module.scss";
 
 type AudienceSectionProps = {
@@ -61,7 +62,7 @@ export function AudienceSection({
     >
       <div className={styles.container}>
         <div className={styles.centeredHeading}>
-          <h2>За кого е този курс?</h2>
+          <SectionHeading>За кого е този курс?</SectionHeading>
         </div>
         <div
           className={

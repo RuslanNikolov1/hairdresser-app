@@ -15,9 +15,8 @@ dist
 build
 
 # env
-.env*.local
-!.env.local.example
 .env
+!.env.example
 
 # vercel
 .vercel

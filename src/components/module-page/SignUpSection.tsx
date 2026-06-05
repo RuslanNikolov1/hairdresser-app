@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { Mail, Phone } from "lucide-react";
 
 import { FacebookIcon, InstagramIcon } from "./SocialIcons";
+import { SectionHeading } from "./SectionHeading";
 
 import type { SignupContacts } from "@/lib/signup/contacts";
 import styles from "./SignUpSection.module.scss";
@@ -12,6 +13,7 @@ type SignUpSectionProps = {
   moduleSlug: string;
   moduleTitle: string;
   contacts: SignupContacts;
+  surfaceClassName?: string;
 };
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -20,6 +22,7 @@ export function SignUpSection({
   moduleSlug,
   moduleTitle,
   contacts,
+  surfaceClassName,
 }: SignUpSectionProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -63,13 +66,13 @@ export function SignUpSection({
   return (
     <section
       id="signup"
-      className={styles.section}
+      className={[styles.section, surfaceClassName].filter(Boolean).join(" ")}
       aria-labelledby="signup-heading"
     >
       <div className={styles.container}>
-        <h2 id="signup-heading" className={styles.heading}>
+        <SectionHeading id="signup-heading" titleClassName={styles.heading}>
           Запиши се
-        </h2>
+        </SectionHeading>
         <p className={styles.lead}>
           Попълнете формата и ще се свържем с вас за потвърждение на мястото ви в
           курса.

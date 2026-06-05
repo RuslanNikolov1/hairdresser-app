@@ -16,6 +16,7 @@ import type { SignupContacts } from "@/lib/signup/contacts";
 
 import { AudienceSection } from "./AudienceSection";
 import { ExpertSection } from "./ExpertSection";
+import { SectionHeading } from "./SectionHeading";
 import { SignUpSection } from "./SignUpSection";
 import { SanityImage } from "./SanityImage";
 import styles from "./ModulePage.module.scss";
@@ -75,19 +76,21 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
   return (
     <div className={styles.page}>
       <header className={styles.nav}>
-        <Link href="/" className={styles.brand} aria-label="DR & D home">
-          DR & D
-        </Link>
-        <nav className={styles.navLinks} aria-label="Primary navigation">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
-        <a className={styles.navCta} href="#signup">
-          Запиши се
-        </a>
+        <div className={styles.navInner}>
+          <Link href="/" className={styles.brand} aria-label="DR & D home">
+            DR & D
+          </Link>
+          <nav className={styles.navLinks} aria-label="Primary navigation">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <a className={styles.navCta} href="#signup">
+            Запиши се
+          </a>
+        </div>
       </header>
 
       <main>
@@ -111,19 +114,14 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                     Научи повече
                   </a>
                 </div>
-                <div className={styles.courseIndex} aria-label="Секции в курса">
-                  {navItems.map((item) => (
-                    <a key={item.href} href={item.href}>
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
               </div>
               <div className={styles.heroImage}>
                 <SanityImage
                   image={module.backgroundImage}
                   fallbackAlt={module.title}
+                  fill
                   priority
+                  className={styles.heroImageMedia}
                   sizes="(min-width: 900px) 46vw, 92vw"
                 />
               </div>
@@ -143,7 +141,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
         >
           <div className={styles.container}>
             <div className={styles.centeredHeading}>
-              <h2>Какво ще научиш?</h2>
+              <SectionHeading>Какво ще научиш?</SectionHeading>
             </div>
             <div className={styles.learningStack}>
               <article className={styles.theoryPanel}>
@@ -173,15 +171,19 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
           </div>
         </section>
 
-        <section id="certificate" className={styles.section}>
+        <section
+          id="certificate"
+          className={`${styles.section} ${styles.certificateSection}`}
+        >
           <div className={`${styles.container} ${styles.certificateGrid}`}>
             <div>
-              <h2>Официално признание за вашите умения</h2>
+              <SectionHeading accent="line">
+                Официално признание за вашите умения
+              </SectionHeading>
               <p className={styles.lead}>
                 След успешно завършване ще получите сертификат, който показва
                 придобитите знания и практическа подготовка.
               </p>
-              <div className={styles.badge}>Международно признат сертификат</div>
             </div>
             <div className={styles.certificateImage}>
               <SanityImage
@@ -189,16 +191,17 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                 fallbackAlt={`Сертификат за ${module.title}`}
                 sizes="(min-width: 900px) 42vw, 90vw"
               />
+              <div className={styles.badge}>Международно признат сертификат</div>
             </div>
           </div>
         </section>
 
         <Divider />
 
-        <section id="studio" className={styles.section}>
+        <section id="studio" className={`${styles.section} ${styles.studioSection}`}>
           <div className={styles.container}>
             <div className={styles.studioHeading}>
-              <h2>Пространство за Творчество</h2>
+              <SectionHeading>Пространство за Творчество</SectionHeading>
               <p>
                 Нашето студио е проектирано да вдъхновява. Оборудвано с най-новата
                 професионална техника и разположено в светла, минималистична
@@ -219,10 +222,10 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
           </div>
         </section>
 
-        <section id="details" className={`${styles.section} ${styles.soft}`}>
+        <section id="details" className={`${styles.section} ${styles.detailsSection}`}>
           <div className={`${styles.container} ${styles.detailsGrid}`}>
             <div>
-              <h2>Детайли на курса</h2>
+              <SectionHeading accent="line">Детайли на курса</SectionHeading>
               <p className={styles.lead}>
                 Инвестирайте в своето развитие с програма, създадена за реална
                 практика и увереност в салонна среда.
@@ -268,15 +271,14 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
         </section>
 
         {showGallery && (
-          <section id="gallery" className={styles.section}>
+          <section id="gallery" className={`${styles.section} ${styles.gallerySection}`}>
             <div className={styles.container}>
               <div className={styles.centeredHeading}>
-                <h2>Галерия</h2>
+                <SectionHeading>Галерия</SectionHeading>
               </div>
 
               {processImages.length > 0 && (
                 <div className={styles.galleryBlock}>
-                  <h3 className={styles.gallerySubheading}>Процес</h3>
                   <div className={styles.galleryGrid}>
                     {processImages.map((image, index) => (
                       <div
@@ -314,6 +316,15 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                         <span className={styles.beforeBadge}>Преди</span>
                       </div>
                     </figure>
+                    <div className={styles.beforeAfterDivider} aria-hidden="true">
+                      <svg
+                        className={styles.beforeAfterWave}
+                        viewBox="0 0 28 320"
+                        preserveAspectRatio="none"
+                      >
+                        <path d="M14 0 Q26 8 14 16 Q2 24 14 32 Q26 40 14 48 Q2 56 14 64 Q26 72 14 80 Q2 88 14 96 Q26 104 14 112 Q2 120 14 128 Q26 136 14 144 Q2 152 14 160 Q26 168 14 176 Q2 184 14 192 Q26 200 14 208 Q2 216 14 224 Q26 232 14 240 Q2 248 14 256 Q26 264 14 272 Q2 280 14 288 Q26 296 14 304 Q2 312 14 320" />
+                      </svg>
+                    </div>
                     <figure className={styles.beforeAfterCard}>
                       <div className={styles.beforeAfterMedia}>
                         <SanityImage

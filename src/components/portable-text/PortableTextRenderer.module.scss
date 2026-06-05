@@ -66,12 +66,12 @@
 .practice .item {
   position: relative;
   min-width: 0;
-  padding: 1.1rem 2rem 1.1rem 0;
+  padding: 1.1rem 0 1.1rem 1.75rem;
   border-bottom: var(--rule-hair) solid var(--color-rule);
   color: var(--color-ink);
   font-size: clamp(1rem, 1.1vw, 1.125rem);
   line-height: 1.55;
-  text-align: right;
+  text-align: left;
 
   &:last-child {
     border-bottom: none;
@@ -80,8 +80,7 @@
   &::before {
     position: absolute;
     top: 1.15rem;
-    right: 0;
-    left: auto;
+    left: 0;
     width: 0.45rem;
     height: 0.45rem;
     border: none;

@@ -10,7 +10,7 @@ export function resolveSignupContacts(
   const contactEmail =
     settings?.contactEmail?.trim() || DEFAULT_NOTIFICATION_EMAIL;
   const phone =
-    settings?.contactPhone?.trim() || "+359 88 123 4567";
+    settings?.contactPhone?.trim() || "+359892201057";
   const phoneDigits = phone.replace(/\D/g, "");
   const phoneHref = phoneDigits ? `tel:+${phoneDigits}` : `tel:${phone}`;
 
@@ -21,7 +21,7 @@ export function resolveSignupContacts(
     phoneHref,
     facebook:
       settings?.facebookUrl?.trim() ||
-      "https://www.facebook.com/aurabloom",
+      "https://www.facebook.com/profile.php?id=100063462193608",
     facebookLabel: settings?.facebookLabel?.trim() || "DR & D",
     instagram:
       settings?.instagramUrl?.trim() ||

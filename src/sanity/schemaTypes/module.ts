@@ -88,7 +88,7 @@ export const moduleType = defineType({
       name: "location",
       title: "Място",
       type: "string",
-      initialValue: "Калофер 27",
+      initialValue: "Патриарх Евтимий 44",
       validation: (rule) => rule.required(),
     }),
     defineField({

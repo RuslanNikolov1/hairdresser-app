@@ -4,7 +4,11 @@
   position: relative;
   padding-block: clamp(4.5rem, 9vw, 8rem);
   overflow: clip;
-  background: transparent;
+  background: linear-gradient(
+    90deg,
+    var(--color-paper) 0 var(--paper-split),
+    var(--color-paper-2) var(--paper-split)
+  );
 }
 
 .container {
@@ -69,13 +73,6 @@
   padding: clamp(2rem, 5vw, 4.75rem) clamp(1.25rem, 4vw, 3.75rem)
     clamp(2rem, 5vw, 4.75rem) 0;
   text-align: left;
-
-  &::before {
-    width: clamp(4rem, 9vw, 7rem);
-    height: var(--rule-hair);
-    background: var(--color-rule);
-    content: "";
-  }
 }
 
 .headingLockup {
@@ -113,10 +110,6 @@
 
 .quote {
   position: relative;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: flex-start;
-  gap: var(--space-md);
   width: min(100%, 37rem);
   margin: clamp(0.25rem, 1vw, 0.75rem) 0 0;
   padding: clamp(1.1rem, 2vw, 1.35rem);
@@ -130,18 +123,6 @@
     font-size: clamp(1rem, 1.2vw, 1.1rem);
     font-style: italic;
     line-height: 1.7;
-  }
-}
-
-.quoteIcon {
-  display: inline-flex;
-  flex-shrink: 0;
-  margin-top: 0.18rem;
-  color: var(--color-gold-soft);
-
-  svg {
-    width: 1.35rem;
-    height: 1.35rem;
   }
 }
 

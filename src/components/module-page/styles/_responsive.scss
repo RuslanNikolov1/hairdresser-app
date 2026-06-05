@@ -1,11 +1,22 @@
 @media (width <= 860px) {
-  .nav {
-    top: var(--space-sm);
-    align-items: center;
+  .navInner {
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
   }
 
   .navLinks {
-    display: none;
+    order: 3;
+    flex-basis: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .hero {
@@ -18,12 +29,21 @@
     grid-template-columns: 1fr;
   }
 
+  .studioHeading p {
+    align-self: start;
+  }
+
   .heroContent {
     padding-bottom: 0;
   }
 
   .heroImage {
-    min-height: 22rem;
+    aspect-ratio: 4 / 5;
+    transform: translateY(clamp(0.5rem, 2vw, 1.25rem));
+  }
+
+  .beforeAfterDivider {
+    display: none;
   }
 
   .detailsGrid,
@@ -44,7 +64,14 @@
 
   .audienceGrid {
     grid-template-columns: 1fr;
+    justify-content: stretch;
     width: 100%;
+  }
+
+  .theoryPanel,
+  .practicePanel {
+    width: 100%;
+    margin-inline: 0;
   }
 
   .bookingCard {
@@ -60,6 +87,10 @@
 
   .nav {
     padding-inline: 1rem;
+  }
+
+  .navInner {
+    width: 100%;
   }
 
   .navCta {
@@ -78,10 +109,6 @@
   .primaryButton,
   .secondaryButton {
     width: 100%;
-  }
-
-  .courseIndex {
-    gap: var(--space-xs) var(--space-md);
   }
 
   .galleryGrid {

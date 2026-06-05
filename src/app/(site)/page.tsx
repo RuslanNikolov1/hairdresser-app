@@ -1,30 +1,21 @@
-import Link from "next/link";
-
-import styles from "./page.module.scss";
+import { HomePage, type HomePageModule } from "@/components/home-page/HomePage";
+import { resolveSignupContacts } from "@/lib/signup/contacts";
+import type { SiteSettingsContacts } from "@/lib/signup/types";
+import { sanityFetch } from "@/sanity/lib/live";
+import { MODULES_INDEX_QUERY, SITE_SETTINGS_QUERY } from "@/sanity/lib/queries";
 
 export const dynamic = "force-dynamic";
 
-export default function HomePage() {
+export default async function HomeRoute() {
+  const [{ data: modules }, { data: siteSettings }] = await Promise.all([
+    sanityFetch({ query: MODULES_INDEX_QUERY }),
+    sanityFetch({ query: SITE_SETTINGS_QUERY }),
+  ]);
+
   return (
-    <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.content}>
-          <p className={styles.eyebrow}>DR & D</p>
-          <h1 className={styles.title}>Модулни страници за курсове</h1>
-          <p className={styles.text}>
-            Създавайте и управлявайте курсoви модулни страници през Sanity
-            Studio, след което ги публикувайте като динамични страници.
-          </p>
-          <div className={styles.actions}>
-            <Link className={styles.button} href="/studio">
-              Отвори Studio
-            </Link>
-            <Link className={styles.secondaryButton} href="/modules/колористика">
-              Виж примерен URL
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
+    <HomePage
+      modules={(modules || []) as HomePageModule[]}
+      contacts={resolveSignupContacts(siteSettings as SiteSettingsContacts | null)}
+    />
   );
 }

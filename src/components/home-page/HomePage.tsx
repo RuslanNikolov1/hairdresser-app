@@ -1,0 +1,479 @@
+import Link from "next/link";
+import type { ElementType } from "react";
+import {
+  Award,
+  BookOpen,
+  Calendar,
+  GraduationCap,
+  Mail,
+  Phone,
+  Scissors,
+  Sparkles,
+  University,
+  Users,
+} from "lucide-react";
+
+import { FacebookIcon, InstagramIcon } from "@/components/module-page/SocialIcons";
+import { SanityImage } from "@/components/module-page/SanityImage";
+import type { SanityImageValue } from "@/components/module-page/types";
+import type { SignupContacts } from "@/lib/signup/contacts";
+
+import {
+  galleryBeforeAfter,
+  galleryProcess,
+  galleryStudio,
+  instructor,
+  learningFormats,
+  learningHighlights,
+  learningLevels,
+  testimonials,
+} from "./content";
+import styles from "./HomePage.module.scss";
+
+export type HomePageModule = {
+  _id: string;
+  title?: string;
+  slug?: string;
+  targetAudience?: string;
+  startAt?: string;
+  price?: number;
+  backgroundImage?: SanityImageValue;
+};
+
+type HomePageProps = {
+  modules: HomePageModule[];
+  contacts: SignupContacts;
+};
+
+type IconComponent = ElementType<{ strokeWidth?: number; "aria-hidden"?: boolean }>;
+
+const audienceLabels: Record<string, string> = {
+  beginners: "За начинаещи",
+  advanced: "За напреднали",
+  both: "За начинаещи и напреднали",
+};
+
+const highlightIcons: IconComponent[] = [BookOpen, Scissors, Award];
+
+function formatDate(value?: string) {
+  if (!value) {
+    return "Очаквайте скоро";
+  }
+
+  return new Intl.DateTimeFormat("bg-BG", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(value));
+}
+
+function formatPrice(value?: number) {
+  if (typeof value !== "number") {
+    return "Цена при запитване";
+  }
+
+  return `${value} евро`;
+}
+
+function getAudienceLabel(value?: string) {
+  if (!value) {
+    return "За всички нива";
+  }
+
+  return audienceLabels[value] || value;
+}
+
+const navItems = [
+  { href: "#learning", label: "Обучение" },
+  { href: "#modules", label: "Модули" },
+  { href: "#gallery", label: "Галерия" },
+  { href: "#mentor", label: "Инструктор" },
+  { href: "#contacts", label: "Контакти" },
+] as const;
+
+export function HomePage({ modules, contacts }: HomePageProps) {
+  return (
+    <div className={styles.page}>
+      <header className={styles.nav}>
+        <div className={styles.navInner}>
+          <Link href="/" className={styles.brand} aria-label="DR & D начало">
+            DR & D
+          </Link>
+          <nav className={styles.navLinks} aria-label="Основна навигация">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <a className={styles.navCta} href="#contacts">
+            Свържи се
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section className={styles.hero} aria-labelledby="home-hero-title">
+          <div className={styles.heroVisual} aria-hidden="true">
+            <div className={styles.heroBackdrop}>
+              <span className={styles.heroComb} />
+              <span className={styles.heroShear} />
+              <span className={styles.heroSwatch} />
+              <span className={styles.heroLight} />
+            </div>
+          </div>
+          <div className={styles.heroCopy}>
+            <h1 id="home-hero-title">
+              Модули за фризьори, които се учат с ръце.
+            </h1>
+            <p>
+              Всеки модул събира ясна теория, демонстрация и работа в студио.
+            </p>
+            <div className={styles.heroLinks}>
+              <a href="#modules">Виж модулите</a>
+              <a href="#contacts">Свържи се</a>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="learning"
+          className={styles.learningSection}
+          aria-labelledby="learning-title"
+        >
+          <div className={styles.sectionHeader}>
+            <p className={styles.sectionLabel}>Формати</p>
+            <h2 id="learning-title">Обучение според нивото и ритъма ти</h2>
+          </div>
+          <div className={styles.modeGrid}>
+            {learningFormats.map((mode) => (
+              <article key={mode.title} className={styles.modeCard}>
+                <h3>{mode.title}</h3>
+                <p>{mode.text}</p>
+              </article>
+            ))}
+          </div>
+          <div className={styles.levelGrid}>
+            {learningLevels.map((level) => {
+              const Icon = level.id === "beginners" ? University : Sparkles;
+              const levelClassName =
+                level.id === "beginners"
+                  ? styles.levelCardBeginners
+                  : styles.levelCardAdvanced;
+
+              return (
+                <article
+                  key={level.id}
+                  className={`${styles.levelCard} ${levelClassName}`}
+                >
+                  <span className={styles.levelIcon} aria-hidden="true">
+                    <Icon strokeWidth={1.75} />
+                  </span>
+                  <div className={styles.levelBody}>
+                    <p className={styles.levelEyebrow}>{level.eyebrow}</p>
+                    <h3>{level.title}</h3>
+                    <p>{level.text}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+          <div className={styles.highlightGrid}>
+            {learningHighlights.map((highlight, index) => {
+              const Icon = highlightIcons[index] || Sparkles;
+
+              return (
+                <article key={highlight.title} className={styles.highlightCard}>
+                  <span className={styles.highlightIcon} aria-hidden="true">
+                    <Icon strokeWidth={1.65} />
+                  </span>
+                  <h3>{highlight.title}</h3>
+                  <p>{highlight.text}</p>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
+        <section
+          id="modules"
+          className={styles.moduleSection}
+          aria-labelledby="modules-title"
+        >
+          <div className={styles.sectionHeader}>
+            <p className={styles.sectionLabel}>Каталог</p>
+            <h2 id="modules-title">Активни модули</h2>
+          </div>
+
+          {modules.length > 0 ? (
+            <div className={styles.moduleGrid}>
+              {modules.map((module, index) => (
+                <ModuleCard key={module._id || module.slug || index} module={module} />
+              ))}
+            </div>
+          ) : (
+            <div className={styles.emptyModules}>
+              <p>В момента няма публикувани модули.</p>
+              <a href={contacts.phoneHref}>Обадете се за предстоящи дати</a>
+            </div>
+          )}
+        </section>
+
+        <section className={styles.certificateSection} aria-labelledby="certificate-title">
+          <div className={styles.certificateCopy}>
+            <p className={styles.sectionLabel}>Удостоверение</p>
+            <h2 id="certificate-title">Документ за преминато обучение</h2>
+            <p>
+              След завършване получаваш удостоверение за обучение. То служи като
+              знак за преминат модул, усвоена тема и практическа работа в студио.
+            </p>
+          </div>
+          <div className={styles.certificatePreview} aria-label="Примерен сертификат">
+            <span>DR & D</span>
+            <strong>Удостоверение за обучение</strong>
+            <p>Име на курсист · Модул · Дата</p>
+          </div>
+        </section>
+
+        <section id="gallery" className={styles.gallerySection} aria-labelledby="gallery-title">
+          <div className={styles.sectionHeader}>
+            <p className={styles.sectionLabel}>Галерия</p>
+            <h2 id="gallery-title">Студио</h2>
+          </div>
+          <div className={styles.galleryLayout}>
+            <GalleryCard item={galleryStudio} wide />
+
+            <div className={styles.galleryProcessBlock}>
+              <div className={styles.galleryProcessHeading}>
+                <h3>{galleryProcess.title}</h3>
+              </div>
+              <div className={styles.processGrid}>
+                {galleryProcess.images.map((image) => (
+                  <div key={image.label} className={styles.processGridItem}>
+                    <div className={styles.processGridMedia}>
+                      <div
+                        className={styles.galleryPlaceholder}
+                        aria-hidden="true"
+                      >
+                        <span>{image.label}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.galleryBeforeAfterBlock}>
+              <h3 className={styles.gallerySubheading}>
+                Трансформации
+                <br />
+                Преди &amp; След
+              </h3>
+              <div className={styles.beforeAfterGrid}>
+                {galleryBeforeAfter.map((item, index) => (
+                  <figure key={item.badge} className={styles.beforeAfterCard}>
+                    <div className={styles.beforeAfterMedia}>
+                      <div
+                        className={styles.galleryPlaceholder}
+                        aria-hidden="true"
+                      >
+                        <span>{item.label}</span>
+                      </div>
+                      <span
+                        className={
+                          index === 0 ? styles.beforeBadge : styles.afterBadge
+                        }
+                      >
+                        {item.badge}
+                      </span>
+                    </div>
+                  </figure>
+                ))}
+                <div className={styles.beforeAfterDivider} aria-hidden="true">
+                  <svg
+                    className={styles.beforeAfterWave}
+                    viewBox="0 0 28 320"
+                    preserveAspectRatio="none"
+                  >
+                    <path d="M14 0 Q26 8 14 16 Q2 24 14 32 Q26 40 14 48 Q2 56 14 64 Q26 72 14 80 Q2 88 14 96 Q26 104 14 112 Q2 120 14 128 Q26 136 14 144 Q2 152 14 160 Q26 168 14 176 Q2 184 14 192 Q26 200 14 208 Q2 216 14 224 Q26 232 14 240 Q2 248 14 256 Q26 264 14 272 Q2 280 14 288 Q26 296 14 304 Q2 312 14 320" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="mentor" className={styles.mentorSection} aria-labelledby="mentor-title">
+          <div className={styles.mentorPortrait} aria-hidden="true">
+            <span />
+          </div>
+          <div className={styles.mentorCopy}>
+            <p className={styles.sectionLabel}>{instructor.role}</p>
+            <h2 id="mentor-title">{instructor.name}</h2>
+            <p>{instructor.bio}</p>
+            <blockquote>&ldquo;{instructor.quote}&rdquo;</blockquote>
+          </div>
+        </section>
+
+        <section className={styles.reviewSection} aria-labelledby="reviews-title">
+          <div className={styles.sectionHeader}>
+            <p className={styles.sectionLabel}>Отзиви</p>
+            <h2 id="reviews-title">Какво споделят курсистите</h2>
+          </div>
+          <div className={styles.reviewGrid}>
+            {testimonials.map((testimonial) => (
+              <figure key={testimonial.name} className={styles.reviewCard}>
+                <blockquote>&ldquo;{testimonial.quote}&rdquo;</blockquote>
+                <figcaption>
+                  <strong>{testimonial.name}</strong>
+                  <span>{testimonial.detail}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <section id="contacts" className={styles.contactSection} aria-labelledby="contacts-title">
+          <div className={styles.contactCopy}>
+            <p className={styles.sectionLabel}>Контакти</p>
+            <h2 id="contacts-title">Попитай за подходящ модул</h2>
+            <p>
+              Ако не си сигурен откъде да започнеш, свържи се с нас. Ще ти
+              помогнем да избереш формат, ниво и следваща дата.
+            </p>
+          </div>
+          <address className={styles.contactCard}>
+            <ContactLink
+              icon={Phone}
+              label="Телефон"
+              href={contacts.phoneHref}
+              value={contacts.phone}
+            />
+            <ContactLink
+              icon={Mail}
+              label="Имейл"
+              href={contacts.emailHref}
+              value={contacts.email}
+            />
+            <ContactLink
+              icon={FacebookIcon}
+              label="Facebook"
+              href={contacts.facebook}
+              value={contacts.facebookLabel}
+              external
+            />
+            <ContactLink
+              icon={InstagramIcon}
+              label="Instagram"
+              href={contacts.instagram}
+              value={contacts.instagramLabel}
+              external
+            />
+          </address>
+        </section>
+      </main>
+
+      <footer className={styles.footer}>
+        <p className={styles.footerBrand}>DR & D</p>
+        <p>Модулно обучение за фризьори · Патриарх Евтимий 44 · 2026</p>
+      </footer>
+    </div>
+  );
+}
+
+function GalleryCard({
+  item,
+  wide = false,
+}: {
+  item: { label: string };
+  wide?: boolean;
+}) {
+  return (
+    <article
+      className={`${styles.galleryCard} ${wide ? styles.galleryCardWide : ""}`}
+    >
+      <div className={styles.galleryPlaceholder} aria-hidden="true">
+        <span>{item.label}</span>
+      </div>
+    </article>
+  );
+}
+
+function ModuleCard({ module }: { module: HomePageModule }) {
+  const title = module.title || "Модул без заглавие";
+  const href = module.slug ? `/modules/${module.slug}` : "#contacts";
+
+  return (
+    <article className={styles.moduleCard}>
+      <Link href={href} className={styles.moduleMedia} aria-label={`Виж ${title}`}>
+        {module.backgroundImage?.asset ? (
+          <SanityImage
+            fill
+            image={module.backgroundImage}
+            fallbackAlt={title}
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+          />
+        ) : (
+          <div className={styles.modulePlaceholder} aria-hidden="true">
+            <GraduationCap strokeWidth={1.4} />
+          </div>
+        )}
+      </Link>
+      <div className={styles.moduleBody}>
+        <p className={styles.moduleAudience}>
+          <Users strokeWidth={1.7} aria-hidden="true" />
+          {getAudienceLabel(module.targetAudience)}
+        </p>
+        <h3>
+          <Link href={href}>{title}</Link>
+        </h3>
+        <dl className={styles.moduleMeta}>
+          <div>
+            <dt>
+              <Calendar strokeWidth={1.6} aria-hidden="true" />
+              Старт
+            </dt>
+            <dd>{formatDate(module.startAt)}</dd>
+          </div>
+          <div>
+            <dt>Цена</dt>
+            <dd>{formatPrice(module.price)}</dd>
+          </div>
+        </dl>
+        <Link href={href} className={styles.moduleLink}>
+          Детайли за модула
+        </Link>
+      </div>
+    </article>
+  );
+}
+
+function ContactLink({
+  icon: Icon,
+  label,
+  href,
+  value,
+  external = false,
+}: {
+  icon: IconComponent;
+  label: string;
+  href: string;
+  value: string;
+  external?: boolean;
+}) {
+  return (
+    <a
+      className={styles.contactItem}
+      href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
+      <span className={styles.contactIcon} aria-hidden="true">
+        <Icon strokeWidth={1.75} />
+      </span>
+      <span>
+        <small>{label}</small>
+        <strong>{value}</strong>
+      </span>
+    </a>
+  );
+}

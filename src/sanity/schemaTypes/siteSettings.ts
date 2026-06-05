@@ -27,12 +27,14 @@ export const siteSettings = defineType({
       name: "contactPhone",
       title: "Телефон",
       type: "string",
-      initialValue: "+359 88 123 4567",
+      initialValue: "+359892201057",
     }),
     defineField({
       name: "facebookUrl",
       title: "Facebook URL",
       type: "url",
+      initialValue:
+        "https://www.facebook.com/profile.php?id=100063462193608",
     }),
     defineField({
       name: "facebookLabel",

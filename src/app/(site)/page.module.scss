@@ -57,19 +57,12 @@
   justify-content: center;
   min-height: 3.4rem;
   padding: 1rem 1.8rem;
+  border: 1px solid color-mix(in srgb, var(--color-button) 82%, var(--color-on-surface));
   border-radius: 999px;
+  background: var(--color-button);
+  color: var(--color-button-ink);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-
-.button {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-}
-
-.secondaryButton {
-  border: 1px solid rgba(193, 165, 123, 0.36);
-  color: var(--color-primary);
 }

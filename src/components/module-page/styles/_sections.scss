@@ -1,15 +1,19 @@
 .audienceSection {
-  padding-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+  padding-bottom: 15vh;
+  background: var(--color-paper-2);
 }
 
 .learningSection {
   padding-top: clamp(2.25rem, 4.5vw, 3.5rem);
 }
 
-.audienceSingle,
-.audienceGrid {
-  width: min(100%, 56rem);
-  margin-inline: auto 0;
+.audienceSingle {
+  width: min(100%, 48rem);
+  margin-inline: auto;
+
+  .audienceCard {
+    width: 100%;
+  }
 }
 
 .audienceGrid {
@@ -17,6 +21,8 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1rem, 3vw, 2rem);
   align-items: stretch;
+  width: 100%;
+  margin-inline: auto;
 }
 
 .audienceCard {
@@ -65,17 +71,24 @@
 
 .learningStack {
   display: grid;
+  grid-template-columns: 1fr;
   gap: clamp(2rem, 5vw, 3.5rem);
-  width: min(100%, 56rem);
-  margin-inline: auto;
+  align-items: start;
+  width: 100%;
+  margin-inline: 0;
 }
 
 .theoryPanel,
 .practicePanel {
   min-width: 0;
+  width: min(100%, 48rem);
 }
 
 .theoryPanel {
+  grid-column: 1;
+  grid-row: 1;
+  margin-inline-start: 10%;
+  margin-inline-end: auto;
   padding: clamp(1.5rem, 4vw, 2.5rem);
   border: var(--rule-hair) solid var(--color-rule);
   border-radius: var(--radius-panel);
@@ -120,18 +133,20 @@
  */
 
 .practicePanel {
+  grid-column: 1;
+  grid-row: 2;
+  margin-inline-start: 10%;
   padding: clamp(1.5rem, 4vw, 2.5rem);
   border: var(--rule-hair) solid var(--color-rule);
-  border-inline-end: 0.2rem solid var(--color-accent);
   border-radius: var(--radius-panel);
   background: var(--color-panel-surface);
-  text-align: right;
+  text-align: left;
 }
 
 .practicePanelHead {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: var(--space-md);
   margin-bottom: var(--space-xl);
 
@@ -154,10 +169,10 @@
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  border: var(--rule-hair) solid var(--color-accent);
+  border: var(--rule-hair) solid var(--color-rule);
   border-radius: 999px;
-  background: var(--color-accent);
-  color: var(--color-accent-ink);
+  background: var(--color-paper);
+  color: var(--color-accent);
 
   svg {
     width: 1.5rem;
@@ -169,6 +184,10 @@
   min-width: 0;
 }
 
+.detailsSection {
+  background: var(--color-paper-2);
+}
+
 .detailsGrid,
 .certificateGrid {
   display: grid;
@@ -177,12 +196,24 @@
   align-items: start;
 }
 
+.certificateSection {
+  background: linear-gradient(
+    90deg,
+    var(--color-paper) 0 var(--paper-split),
+    var(--color-paper-2) var(--paper-split)
+  );
+}
+
 .certificateGrid {
   align-items: center;
   grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
 }
 
 .certificateImage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
   width: 94%;
   margin-inline: auto 0;
   padding: 0;
@@ -196,22 +227,39 @@
     height: auto;
     border-radius: var(--radius-panel);
   }
+
+  .badge {
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+    background: var(--color-surface-card);
+  }
+}
+
+.studioSection {
+  background: var(--color-paper);
 }
 
 .studioHeading {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(1.5rem, 5vw, 4rem);
-  align-items: end;
+  align-items: stretch;
   width: 100%;
+
+  > :first-child {
+    align-self: start;
+  }
 
   h2 {
     margin: 0;
   }
 
   p {
-    max-width: min(100%, 35rem);
+    align-self: center;
+    width: 90%;
     margin: 0;
+    margin-top: 15%;
     margin-inline: auto 0;
     color: var(--color-muted);
     font-size: clamp(1rem, 1.4vw, 1.18rem);
@@ -221,7 +269,7 @@
 
 .studioFrame {
   width: min(100%, 64rem);
-  margin-inline: auto 0;
+  margin-inline: 0;
   padding: 0;
   border: none;
   background: transparent;
@@ -304,10 +352,10 @@
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    justify-content: center;
+    justify-content: flex-start;
     gap: var(--space-sm) var(--space-md);
     margin: 0 0 var(--space-xl);
-    text-align: center;
+    text-align: left;
 
     span {
       color: var(--color-muted);
