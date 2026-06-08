@@ -4,6 +4,9 @@ import { client } from "@/sanity/lib/client";
 import { MODULE_SLUGS_QUERY } from "@/sanity/lib/queries";
 import { getSiteUrl } from "@/lib/site/url";
 
+// Refreshed on publish via /api/revalidate; daily fallback if webhook misses.
+export const revalidate = 86_400;
+
 type ModuleSlug = {
   slug?: string;
   _updatedAt?: string;
