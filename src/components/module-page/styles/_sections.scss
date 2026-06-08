@@ -4,7 +4,28 @@
 }
 
 .learningSection {
+  position: relative;
   padding-top: clamp(2.25rem, 4.5vw, 3.5rem);
+  background: var(--color-paper-2);
+  isolation: isolate;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+    width: var(--paper-split);
+    border-top-right-radius: clamp(4rem, 14vw, 9rem);
+    background: var(--color-paper);
+    content: "";
+    pointer-events: none;
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .audienceSingle {

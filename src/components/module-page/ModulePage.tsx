@@ -68,6 +68,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
     ? formatClassLabels[module.format]
     : "";
   const navItems = [
+    { href: "/", label: "Начало" },
     { href: "#learning", label: "Програма" },
     { href: "#certificate", label: "Сертификат" },
     { href: "#studio", label: "Студио" },

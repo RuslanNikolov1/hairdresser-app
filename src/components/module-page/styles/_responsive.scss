@@ -16,7 +16,8 @@
       "lead"
       "image"
       "actions";
-    gap: var(--space-lg);
+    row-gap: var(--space-md);
+    column-gap: var(--space-lg);
   }
 
   .studioHeading p {
