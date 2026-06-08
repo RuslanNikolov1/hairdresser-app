@@ -21,7 +21,7 @@ export const siteSettings = defineType({
       title: "Публичен имейл за контакти",
       type: "string",
       validation: (rule) => rule.required().email(),
-      initialValue: "ruslannikolov1@gmail.com",
+      initialValue: "dilqna_dacheva@abv.bg",
     }),
     defineField({
       name: "contactPhone",
@@ -46,12 +46,13 @@ export const siteSettings = defineType({
       name: "instagramUrl",
       title: "Instagram URL",
       type: "url",
+      initialValue: "https://www.instagram.com/drdbeautystudio.bg/",
     }),
     defineField({
       name: "instagramLabel",
       title: "Instagram етикет",
       type: "string",
-      initialValue: "@aurabloom",
+      initialValue: "@drdbeautystudio.bg",
     }),
   ],
   preview: {

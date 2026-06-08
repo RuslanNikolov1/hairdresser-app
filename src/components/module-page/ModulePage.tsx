@@ -194,7 +194,6 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                 fallbackAlt={`Сертификат за ${module.title}`}
                 sizes="(min-width: 900px) 42vw, 90vw"
               />
-              <div className={styles.badge}>Международно признат сертификат</div>
             </div>
           </div>
         </section>
@@ -246,7 +245,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
                 />
                 <DetailCard
                   label="Продължителност"
-                  value={`${module.durationMinutes || 0} минути`}
+                  value={module.duration?.trim() || "По уговорка"}
                   icon={Timer}
                 />
                 <DetailCard
@@ -348,11 +347,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
 
         <ExpertSection />
 
-        <SignUpSection
-          moduleSlug={module.slug}
-          moduleTitle={module.title}
-          contacts={signupContacts}
-        />
+        <SignUpSection contacts={signupContacts} />
       </main>
 
       <footer className={styles.footer}>

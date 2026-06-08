@@ -41,35 +41,73 @@ export const learningHighlights = [
   },
 ] as const;
 
-export const galleryStudio = {
-  label: `Студио DR & D, ${STUDIO_CITY}`,
-} as const;
+export const galleryStudioImages = [
+  { src: "/studio-3.jpg", alt: `Студио DR & D, ${STUDIO_CITY}` },
+  { src: "/studio-1.jpg", alt: `Студио DR & D, ${STUDIO_CITY}` },
+  { src: "/studio-2.jpg", alt: `Студио DR & D, ${STUDIO_CITY}` },
+] as const;
 
 export const galleryProcess = {
   title: "Процес",
-  images: [
-    { label: "Консултация" },
-    { label: "Подготовка" },
-    { label: "Изпълнение" },
-  ],
 } as const;
+
+export const galleryProcessImages = [
+  { src: "/education-1.jpg", alt: `Обучение в DR & D, ${STUDIO_CITY}` },
+  { src: "/education-2.jpg", alt: `Обучение в DR & D, ${STUDIO_CITY}` },
+  { src: "/education-3.jpg", alt: `Обучение в DR & D, ${STUDIO_CITY}` },
+  { src: "/education-4.jpg", alt: `Обучение в DR & D, ${STUDIO_CITY}` },
+] as const;
+
+export const galleryHair = {
+  title: "Коси",
+} as const;
+
+export const galleryHairImages = [
+  { src: "/hair-3.jpg", alt: `Прически от DR & D, ${STUDIO_CITY}` },
+  { src: "/hair-4.jpg", alt: `Прически от DR & D, ${STUDIO_CITY}` },
+  { src: "/hair-7.jpg", alt: `Прически от DR & D, ${STUDIO_CITY}` },
+  { src: "/hair-8.jpg", alt: `Прически от DR & D, ${STUDIO_CITY}` },
+] as const;
 
 export const galleryBeforeAfter = [
   {
     label: "Начална точка",
     badge: "Преди",
+    src: "/before-1.jpg",
+    alt: "Трансформация — преди",
   },
   {
     label: "Резултат",
     badge: "След",
+    src: "/after-1.png",
+    alt: "Трансформация — след",
+  },
+] as const;
+
+export const galleryVideoEmbeds = [
+  {
+    src: "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2F100063462193608%2Fvideos%2F590058624790439%2F&show_text=false&width=476&t=0",
+    title: "Видео от DR & D",
+    width: 476,
+    height: 476,
+  },
+  {
+    src: "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2F100063462193608%2Fvideos%2F2500538883349837%2F&show_text=false&width=357&t=0",
+    title: "Видео от DR & D",
+    width: 357,
+    height: 476,
   },
 ] as const;
 
 export const instructor = {
-  name: "Елена Иванова",
+  name: "Диляна Дачева",
   role: "Главен инструктор",
-  bio: "Елена води обученията за фризьори в DR & D с внимание към структурата, чистата техника и реалната работа в салон. Подходът ѝ съчетава теория, демонстрация и индивидуална обратна връзка към всеки участник.",
-  quote: "Добрата техника се учи най-добре, когато теорията веднага срещне ръцете.",
+  image: "/profile-image.png",
+  imageWidth: 1023,
+  imageHeight: 1537,
+  bio: "С 27 години опит в професията. Кариерата ѝ започва през 1997 година. Завършва професионално училище по фризьорство и козметика в Бургас и същата година отваря първия си салон. Работи и се обучава в Атина и Милано, след което преминава обучение в академия L'Oréal. След това продължава с обучения по колористика, подстригване и стайлинг на прически. Участва в международни конкурси и шоу програми. Пет години е обучаващ тренер за Elgon. Изкарала е първа и втора степен мастърклас по подстригване и колористика.",
+  quote:
+    "Мисията ми е да преобразявам и да създавам красота и най-добрата награда за мен е усмивката и благодарността на клиента.",
 } as const;
 
 export const testimonials = [

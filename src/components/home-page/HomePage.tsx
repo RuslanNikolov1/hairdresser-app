@@ -1,5 +1,6 @@
 import Link from "next/link";
-import type { ElementType } from "react";
+import Image from "next/image";
+import type { CSSProperties, ElementType } from "react";
 import {
   Award,
   BookOpen,
@@ -28,8 +29,12 @@ import { HOME_HERO_LEAD, HOME_TITLE } from "@/lib/site/metadata";
 
 import {
   galleryBeforeAfter,
+  galleryHair,
+  galleryHairImages,
   galleryProcess,
-  galleryStudio,
+  galleryProcessImages,
+  galleryStudioImages,
+  galleryVideoEmbeds,
   homeContactIntro,
   homeModulesIntro,
   instructor,
@@ -110,14 +115,6 @@ export function HomePage({ modules, contacts }: HomePageProps) {
 
       <main>
         <section className={styles.hero} aria-labelledby="home-hero-title">
-          <div className={styles.heroVisual} aria-hidden="true">
-            <div className={styles.heroBackdrop}>
-              <span className={styles.heroComb} />
-              <span className={styles.heroShear} />
-              <span className={styles.heroSwatch} />
-              <span className={styles.heroLight} />
-            </div>
-          </div>
           <div className={styles.heroCopy}>
             <h1 id="home-hero-title">{HOME_TITLE}</h1>
             <p>{HOME_HERO_LEAD}</p>
@@ -125,6 +122,16 @@ export function HomePage({ modules, contacts }: HomePageProps) {
               <a href="#modules">Виж модулите</a>
               <a href="#contacts">Свържи се</a>
             </div>
+          </div>
+          <div className={styles.heroVisual}>
+            <Image
+              src="/tale-1-hd.jpg"
+              alt="DR & D студио"
+              fill
+              priority
+              className={styles.heroImage}
+              sizes="(min-width: 960px) 50vw, 100vw"
+            />
           </div>
         </section>
 
@@ -232,27 +239,42 @@ export function HomePage({ modules, contacts }: HomePageProps) {
 
         <section id="gallery" className={styles.gallerySection} aria-labelledby="gallery-title">
           <div className={styles.sectionHeader}>
-            <p className={styles.sectionLabel}>Галерия</p>
-            <h2 id="gallery-title">Студио</h2>
+            <h2 id="gallery-title">Галерия</h2>
           </div>
           <div className={styles.galleryLayout}>
-            <GalleryCard item={galleryStudio} wide />
-
             <div className={styles.galleryProcessBlock}>
               <div className={styles.galleryProcessHeading}>
                 <h3>{galleryProcess.title}</h3>
               </div>
-              <div className={styles.processGrid}>
-                {galleryProcess.images.map((image) => (
-                  <div key={image.label} className={styles.processGridItem}>
-                    <div className={styles.processGridMedia}>
-                      <div
-                        className={styles.galleryPlaceholder}
-                        aria-hidden="true"
-                      >
-                        <span>{image.label}</span>
-                      </div>
-                    </div>
+              <div className={styles.galleryProcessGrid}>
+                {galleryProcessImages.map((image) => (
+                  <div key={image.src} className={styles.galleryLandscapeItem}>
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className={styles.galleryLandscapeImage}
+                      sizes="(min-width: 641px) 45vw, 90vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.galleryProcessBlock}>
+              <div className={styles.galleryProcessHeading}>
+                <h3>{galleryHair.title}</h3>
+              </div>
+              <div className={styles.galleryProcessGrid}>
+                {galleryHairImages.map((image) => (
+                  <div key={image.src} className={styles.galleryLandscapeItem}>
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className={styles.galleryLandscapeImage}
+                      sizes="(min-width: 641px) 45vw, 90vw"
+                    />
                   </div>
                 ))}
               </div>
@@ -268,12 +290,13 @@ export function HomePage({ modules, contacts }: HomePageProps) {
                 {galleryBeforeAfter.map((item, index) => (
                   <figure key={item.badge} className={styles.beforeAfterCard}>
                     <div className={styles.beforeAfterMedia}>
-                      <div
-                        className={styles.galleryPlaceholder}
-                        aria-hidden="true"
-                      >
-                        <span>{item.label}</span>
-                      </div>
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        className={styles.beforeAfterImage}
+                        sizes="(min-width: 641px) 45vw, 90vw"
+                      />
                       <span
                         className={
                           index === 0 ? styles.beforeBadge : styles.afterBadge
@@ -296,11 +319,64 @@ export function HomePage({ modules, contacts }: HomePageProps) {
               </div>
             </div>
           </div>
+
+          <div className={styles.galleryVideoRow}>
+            {galleryVideoEmbeds.map((video) => (
+              <div
+                key={video.src}
+                className={styles.galleryVideoEmbed}
+                style={
+                  {
+                    "--video-width": video.width,
+                    "--video-height": video.height,
+                  } as CSSProperties
+                }
+              >
+                <iframe
+                  src={video.src}
+                  title={video.title}
+                  width={video.width}
+                  height={video.height}
+                  scrolling="no"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.galleryProcessBlock}>
+            <div className={styles.galleryProcessHeading}>
+              <h3>Студио</h3>
+            </div>
+            <article className={`${styles.galleryCard} ${styles.galleryCardWide}`}>
+              <div className={styles.galleryLandscapeGrid}>
+                {galleryStudioImages.map((image) => (
+                  <div key={image.src} className={styles.galleryLandscapeItem}>
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className={styles.galleryLandscapeImage}
+                      sizes="(min-width: 641px) 50vw, 90vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
         </section>
 
         <section id="mentor" className={styles.mentorSection} aria-labelledby="mentor-title">
-          <div className={styles.mentorPortrait} aria-hidden="true">
-            <span />
+          <div className={styles.mentorPortrait}>
+            <Image
+              src={instructor.image}
+              alt={instructor.name}
+              width={instructor.imageWidth}
+              height={instructor.imageHeight}
+              className={styles.mentorImage}
+              sizes="(min-width: 900px) 38vw, 90vw"
+            />
           </div>
           <div className={styles.mentorCopy}>
             <p className={styles.sectionLabel}>{instructor.role}</p>
@@ -377,24 +453,6 @@ export function HomePage({ modules, contacts }: HomePageProps) {
         <p>Модулно обучение за фризьори · {STUDIO_ADDRESS_FULL} · 2026</p>
       </footer>
     </div>
-  );
-}
-
-function GalleryCard({
-  item,
-  wide = false,
-}: {
-  item: { label: string };
-  wide?: boolean;
-}) {
-  return (
-    <article
-      className={`${styles.galleryCard} ${wide ? styles.galleryCardWide : ""}`}
-    >
-      <div className={styles.galleryPlaceholder} aria-hidden="true">
-        <span>{item.label}</span>
-      </div>
-    </article>
   );
 }
 

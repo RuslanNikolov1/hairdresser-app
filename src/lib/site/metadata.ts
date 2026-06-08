@@ -5,7 +5,7 @@ export const SITE_NAME = "DR & D Hairdressing Academy";
 export const SITE_SHORT_NAME = "DR & D";
 
 export const HOME_TITLE =
-  `Модули за фризьори в ${STUDIO_CITY} — теория, демонстрация и практика`;
+  `Модули за фризьори в ${STUDIO_CITY} — теория и практика`;
 
 export const HOME_HERO_LEAD =
   "DR & D Academy предлага модулно обучение с работа в студио — за начинаещи и напреднали, в група или индивидуално.";

@@ -53,7 +53,10 @@ export const MODULE_BY_SLUG_QUERY = defineQuery(`
     theory,
     practice,
     startAt,
-    durationMinutes,
+    "duration": coalesce(
+      duration,
+      select(defined(durationMinutes) => string(durationMinutes) + " минути")
+    ),
     format,
     price,
     processImages[] {

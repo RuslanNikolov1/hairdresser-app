@@ -3,6 +3,7 @@ import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 
+import { getSiteUrl } from "./src/lib/site/url";
 import { bgLocale } from "./src/sanity/i18n/bgLocale";
 import { dataset, projectId } from "./src/sanity/env";
 import { resolve } from "./src/sanity/presentation/resolve";
@@ -41,6 +42,7 @@ export default defineConfig({
       title: "Преглед",
       resolve,
       previewUrl: {
+        origin: getSiteUrl().origin,
         previewMode: {
           enable: "/api/draft-mode/enable",
         },

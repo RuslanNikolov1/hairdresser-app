@@ -25,7 +25,7 @@ export type ModulePageData = {
   theory?: PortableTextBlock[];
   practice?: PortableTextBlock[];
   startAt?: string;
-  durationMinutes?: number;
+  duration?: string;
   format?: "group" | "individual";
   price?: number;
   processImages?: Array<SanityImageValue & { _key?: string }>;

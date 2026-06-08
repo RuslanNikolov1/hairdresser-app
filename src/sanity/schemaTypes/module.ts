@@ -91,11 +91,11 @@ export const moduleType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "durationMinutes",
+      name: "duration",
       title: "Продължителност",
-      type: "number",
-      description: "Минути (напр. 120).",
-      validation: (rule) => rule.required().integer().positive(),
+      type: "string",
+      description: "Напр. 2 часа, 120 минути, половин ден.",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "format",

@@ -9,9 +9,28 @@ import {
 import { SITE_SHORT_NAME } from "./metadata";
 import { absoluteUrl } from "./url";
 
+function durationToIso8601(duration?: string): string | undefined {
+  const trimmed = duration?.trim();
+  if (!trimmed) {
+    return undefined;
+  }
+
+  if (/^\d+$/.test(trimmed)) {
+    return `PT${trimmed}M`;
+  }
+
+  const minutesMatch = trimmed.match(/^(\d+)\s*мин/i);
+  if (minutesMatch) {
+    return `PT${minutesMatch[1]}M`;
+  }
+
+  return undefined;
+}
+
 export function buildModuleJsonLd(module: ModulePageData, slug: string) {
   const pageUrl = buildModulePageUrl(slug);
   const organizationId = `${absoluteUrl("/")}#organization`;
+  const courseDuration = durationToIso8601(module.duration);
 
   return {
     "@context": "https://schema.org",
@@ -85,9 +104,7 @@ export function buildModuleJsonLd(module: ModulePageData, slug: string) {
                     addressCountry: "BG",
                   },
                 },
-                ...(module.durationMinutes
-                  ? { duration: `PT${module.durationMinutes}M` }
-                  : {}),
+                ...(courseDuration ? { duration: courseDuration } : {}),
               },
             }
           : {}),
