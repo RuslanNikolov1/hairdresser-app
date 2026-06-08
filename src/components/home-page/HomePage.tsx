@@ -43,6 +43,7 @@ import {
   learningLevels,
   testimonials,
 } from "./content";
+import { HomePageNav } from "./HomePageNav";
 import styles from "./HomePage.module.scss";
 
 export type HomePageModule = {
@@ -84,34 +85,10 @@ function formatPrice(value?: number) {
   return `${value} евро`;
 }
 
-const navItems = [
-  { href: "#learning", label: "Обучение" },
-  { href: "#modules", label: "Модули" },
-  { href: "#gallery", label: "Галерия" },
-  { href: "#mentor", label: "Инструктор" },
-  { href: "#contacts", label: "Контакти" },
-] as const;
-
 export function HomePage({ modules, contacts }: HomePageProps) {
   return (
     <div className={styles.page}>
-      <header className={styles.nav}>
-        <div className={styles.navInner}>
-          <Link href="/" className={styles.brand} aria-label="DR & D начало">
-            DR & D
-          </Link>
-          <nav className={styles.navLinks} aria-label="Основна навигация">
-            {navItems.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-          <a className={styles.navCta} href="#contacts">
-            Свържи се
-          </a>
-        </div>
-      </header>
+      <HomePageNav />
 
       <main>
         <section className={styles.hero} aria-labelledby="home-hero-title">
@@ -171,7 +148,6 @@ export function HomePage({ modules, contacts }: HomePageProps) {
                     <Icon strokeWidth={1.75} />
                   </span>
                   <div className={styles.levelBody}>
-                    <p className={styles.levelEyebrow}>{level.eyebrow}</p>
                     <h3>{level.title}</h3>
                     <p>{level.text}</p>
                   </div>
@@ -379,7 +355,6 @@ export function HomePage({ modules, contacts }: HomePageProps) {
             />
           </div>
           <div className={styles.mentorCopy}>
-            <p className={styles.sectionLabel}>{instructor.role}</p>
             <h2 id="mentor-title">{instructor.name}</h2>
             <p>{instructor.bio}</p>
             <blockquote>&ldquo;{instructor.quote}&rdquo;</blockquote>

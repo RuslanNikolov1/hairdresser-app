@@ -166,6 +166,66 @@
   box-shadow: var(--shadow-soft);
 }
 
+.navActions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.navToggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: 999px;
+  background: var(--color-panel-surface);
+  color: var(--color-accent);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    color var(--dur-short) var(--ease-out);
+
+  svg {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  &:hover {
+    border-color: var(--color-accent);
+  }
+
+  &:focus-visible {
+    outline: 0.14rem solid var(--color-accent);
+    outline-offset: 0.18rem;
+  }
+}
+
+.navMenuCta {
+  display: none;
+}
+
+.navBackdrop {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  border: 0;
+  background: rgb(0 0 0 / 28%);
+  cursor: pointer;
+}
+
+.navOpen {
+  &::before {
+    background: color-mix(in oklch, #ffffff 82%, var(--color-paper));
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
 .primaryButton,
 .secondaryButton {
   min-height: 3.25rem;

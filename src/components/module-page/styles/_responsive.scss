@@ -1,24 +1,4 @@
 @media (width <= 860px) {
-  .navInner {
-    flex-wrap: wrap;
-    gap: var(--space-sm) var(--space-md);
-  }
-
-  .navLinks {
-    order: 3;
-    flex-basis: 100%;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding-bottom: 0.15rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
   .hero {
     min-height: auto;
     padding-block: 6rem var(--space-3xl);
@@ -70,7 +50,33 @@
   }
 
   .audienceCard {
-    grid-template-columns: 1fr;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: var(--space-md);
+    row-gap: var(--space-sm);
+    align-items: start;
+
+    .iconCircle {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+    }
+
+    > div {
+      display: contents;
+    }
+
+    h3 {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      align-self: center;
+    }
+
+    p {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
   }
 
   .audienceGrid {
@@ -89,6 +95,139 @@
     margin-top: 0;
   }
 
+}
+
+@media (768px < width <= 860px) {
+  .navInner {
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
+  }
+
+  .navLinks {
+    order: 3;
+    flex-basis: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+@media (width <= 768px) {
+  .navInner {
+    position: relative;
+    z-index: 1;
+    flex-wrap: nowrap;
+  }
+
+  .navActions {
+    margin-left: auto;
+  }
+
+  .navCta {
+    display: none;
+  }
+
+  .navToggle {
+    display: inline-flex;
+  }
+
+  .navLinks {
+    position: fixed;
+    z-index: 2;
+    top: calc(3.25rem + env(safe-area-inset-top, 0px));
+    right: 1rem;
+    left: 1rem;
+    display: grid;
+    flex: none;
+    gap: 0;
+    max-height: calc(100dvh - 4.5rem - env(safe-area-inset-bottom, 0px));
+    padding: var(--space-sm);
+    overflow: auto;
+    border: var(--rule-hair) solid var(--color-rule);
+    border-radius: var(--radius-panel);
+    background: var(--color-panel-surface);
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.35rem);
+    transition:
+      opacity var(--dur-short) var(--ease-out),
+      transform var(--dur-short) var(--ease-out);
+    visibility: hidden;
+
+    a:not(.navMenuCta) {
+      padding: 0.95rem 1rem;
+      border-radius: calc(var(--radius-panel) - 0.35rem);
+      color: var(--color-ink);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      text-transform: none;
+
+      &:hover,
+      &:focus-visible {
+        background: var(--color-paper-2);
+        color: var(--color-accent);
+        text-decoration: none;
+      }
+    }
+
+    a.navMenuCta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      margin-top: var(--space-xs);
+      padding-inline: 1.35rem;
+      border: var(--rule-hair) solid var(--color-accent);
+      border-radius: 999px;
+      background: var(--color-accent);
+      color: #fff;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:hover,
+      &:focus-visible {
+        background: var(--color-accent);
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .navLinksOpen {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .bookingCard .bookingPrice {
+    justify-content: center;
+    text-align: center;
+    margin-inline: auto;
+    width: fit-content;
+    max-width: 100%;
+
+    span {
+      font-size: 0.95rem;
+    }
+
+    strong {
+      font-size: clamp(2rem, 6.5vw, 2.6rem);
+    }
+  }
 }
 
 @media (width <= 520px) {

@@ -18,6 +18,7 @@ import { buildModuleHeroLead } from "@/lib/site/module-seo";
 
 import { AudienceSection } from "./AudienceSection";
 import { ExpertSection } from "./ExpertSection";
+import { ModulePageNav } from "./ModulePageNav";
 import { SectionHeading } from "./SectionHeading";
 import { SignUpSection } from "./SignUpSection";
 import { SanityImage } from "./SanityImage";
@@ -77,23 +78,7 @@ export function ModulePage({ module, signupContacts }: ModulePageProps) {
 
   return (
     <div className={styles.page}>
-      <header className={styles.nav}>
-        <div className={styles.navInner}>
-          <Link href="/" className={styles.brand} aria-label="DR & D начало">
-            DR & D
-          </Link>
-          <nav className={styles.navLinks} aria-label="Основна навигация">
-            {navItems.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-          <a className={styles.navCta} href="#signup">
-            Запиши се
-          </a>
-        </div>
-      </header>
+      <ModulePageNav items={navItems} />
 
       <main>
         <section className={styles.hero}>
