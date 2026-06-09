@@ -2,6 +2,32 @@
  * Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4
  */
 
+@mixin splitPaperLeft {
+  position: relative;
+  background: var(--color-paper-2);
+  isolation: isolate;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--color-paper);
+    content: "";
+    pointer-events: none;
+    -webkit-mask-image: var(--paper-wave-left-mask);
+    mask-image: var(--paper-wave-left-mask);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 .page {
   --color-paper: oklch(97% 0.016 34);
   --color-paper-2: oklch(93% 0.02 31);
@@ -33,6 +59,7 @@
   --dur-long: 420ms;
   --surface-split: 55%;
   --paper-split: 45%;
+  --paper-wave-left-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M45 0Q37 6.25 45 12.5Q53 18.75 45 25Q37 31.25 45 37.5Q53 43.75 45 50Q37 56.25 45 62.5Q53 68.75 45 75Q37 81.25 45 87.5Q53 93.75 45 100L0 100L0 0Z' fill='%23fff'/%3E%3C/svg%3E");
 
   overflow-x: clip;
   background:
