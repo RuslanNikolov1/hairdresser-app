@@ -1,4 +1,4 @@
-export const PRODUCTION_SITE_URL = "https://drdbeautystudio.com";
+export const PRODUCTION_SITE_URL = "https://www.drdbeautystudio.com";
 
 export function getSiteUrl(): URL {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
